@@ -2,7 +2,6 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/rg-km/final-project-engineering-68/api"
@@ -10,11 +9,10 @@ import (
 )
 
 func main() {
-	db, err := sql.Open("sqlite3", "./nakaa.db")
+	db, err := sql.Open("sqlite3", "db/nakama.db")
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("db terhubung")
 
 	userRepo := repository.NewUserRepository(db)
 	mainAPI := api.NewAPI(*userRepo)

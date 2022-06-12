@@ -12,6 +12,12 @@ type User struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
 }
+type UserErrorResponse struct {
+	Error string `json:"error"`
+}
+type UserListSuccessResponse struct {
+	Users []User `json:"users"`
+}
 type LoginSuccessResponse struct {
 	Username string `json:"username"`
 	Token    string `json:"token"`
@@ -109,4 +115,34 @@ func (api *API) logout(w http.ResponseWriter, req *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("logged out"))
+}
+
+func (api *API) userlist(w http.ResponseWriter, req *http.Request) {
+	api.AllowOrigin(w, req)
+	encoder := json.NewEncoder(w)
+
+	response := UserListSuccessResponse{}
+	response.Users = make([]User, 0)
+
+	users, err := api.userRepo.FetchUsers()
+	defer func() {
+		if err != nil {
+			w.WriteHeader(http.StatusBadRequest)
+			encoder.Encode(UserErrorResponse{Error: err.Error()})
+			return
+		}
+	}()
+	if err != nil {
+		return
+	}
+
+	for _, product := range users {
+		response.Users = append(response.Users, User{
+			Username: product.Username,
+			Password: product.Password,
+			// Category: product.Category,
+			// Quantity: product.Quantity,
+		})
+	}
+	encoder.Encode(response)
 }

@@ -3,6 +3,7 @@ package repository
 import (
 	"database/sql"
 	"errors"
+	//"github.com/rg-km/final-project-engineering-68/api"
 )
 
 type UserRepository struct {
@@ -45,4 +46,30 @@ func (u *UserRepository) FetchUserRole(username string) (*string, error) {
 		return nil, err
 	}
 	return &user.Role, nil
+}
+
+func (u *UserRepository) FetchUsers() ([]User, error) {
+	var users []User
+	sqlStatement := "SELECT  username, password FROM user"
+	rows, err := u.db.Query(sqlStatement)
+
+	if err != nil {
+		return nil, err
+	}
+
+	defer rows.Close()
+	for rows.Next() {
+		var user User
+		if err := rows.Scan(
+			// &user.ID,
+			&user.Username,
+			&user.Password,
+			// &user.Role,
+			// &user.Loggedin,
+		); err != nil {
+			return users, err
+		}
+		users = append(users, user)
+	}
+	return users, nil
 }

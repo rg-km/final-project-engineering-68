@@ -7,25 +7,28 @@ import (
 )
 
 func main() {
-	db, err := sql.Open("sqlite3", "./nakama.db")
+	db, err := sql.Open("sqlite3", "db/nakama.db")
 	if err != nil {
 		panic(err)
 	}
 
 	_, err = db.Exec(`
-	CREATE TABLE konten (
-		id_konten  INTEGER PRIMARY KEY,
-		id_kategori INTEGER,
-		id_ilustrasi INTEGER, 
-		tanggal_post TEXT,
-		judul_konten TEXT,
+	CREATE TABLE IF NOT EXISTS konten (
+		id  integer not null primary key  AUTOINCREMENT,
+		id_kategori integer not null,
+		id_ilustrasi integer not null, 
+		tanggal_post DATE,
+		judul_konten varchar(255),
 		
 		isi_konten TEXT,
-		tanggal_update TEXT,
-		status_konten TEXT,
-		id_admin INTEGER,
-		jumlah_like INTEGER,
-		jumlah_dislike INTEGER
+		tanggal_update DATE,
+		status_konten varchar(255),
+		id_admin integer not null,
+		jumlah_like integer,
+		jumlah_dislike integer,
+		FOREIGN KEY (id_kategori) REFERENCES kategori(id),
+		FOREIGN KEY (id_ilustrasi) REFERENCES ilustrasi(id),
+		FOREIGN KEY (id_admin) REFERENCES admin(id)
 	  );
 	  
 	  INSERT INTO konten VALUES 
@@ -42,27 +45,29 @@ func main() {
 	  "The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words. If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages. It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is.The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To"
 	  ,"","",300002,1,2);
 	  
-	  CREATE TABLE kategori (
-		id_kategori INTEGER PRIMARY KEY,
-		nama_kategori TEXT
+	  CREATE TABLE IF NOT EXISTS kategori (
+		id integer not null primary key AUTOINCREMENT,
+		nama_kategori varchar(255)
 	  );
 	  INSERT INTO kategori VALUES (500001,"Javascript"),(500002,"Go");
 	  
 	  
-	  CREATE TABLE ilustrasi (
-		id_ilustrasi INTEGER PRIMARY KEY,
+	  CREATE TABLE IF NOT EXISTS ilustrasi (
+		id integer not null primary key  AUTOINCREMENT,
 		isi_ilustrasi BLOB
 	  );
 	  INSERT INTO ILUSTRASI VALUES (200001,101),(200002,100);
 	  
-	  CREATE TABLE komentar (
-		id_komentar  INTEGER PRIMARY KEY,
-		tanggal_komentar TEXT,
-		isi_komentar TEXT,
-		id_user INTEGER, 
-		id_konten INTEGER,
-		jumlah_like INTEGER,
-		jumlah_dislike INTEGER
+	  CREATE TABLE IF NOT EXISTS komentar (
+		id  integer not null  primary key AUTOINCREMENT,
+		tanggal_komentar DATE,
+		isi_komentar varchar(255),
+		id_user integer not null, 
+		id_konten integer not null,
+		jumlah_like integer,
+		jumlah_dislike integer,
+		FOREIGN KEY (id_konten) REFERENCES konten(id),
+		FOREIGN KEY (id_user) REFERENCES user(id)
 	  );
 	  INSERT INTO komentar VALUES (600001,"11-06-2022","Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo",400001,1,1,2)
 	  ,(600002,"11-06-2022","Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo",400002,4,1,2),
@@ -71,17 +76,17 @@ func main() {
 	  
 	  
 	  
-	  CREATE TABLE user (
-		id_user  INTEGER PRIMARY KEY,
-		nama_user TEXT,
-		email_user TEXT,
-		username TEXT,
-		password TEXT,
-		tanggal_bergabung TEXT,
-		role TEXT
+	  CREATE TABLE IF NOT EXISTS user (
+		id  integer not null primary key  AUTOINCREMENT,
+		nama_user varchar(255),
+		email_user varchar(255),
+		username varchar(255),
+		password varchar(255),
+		tanggal_bergabung DATE,
+		role varchar(255)
 	  );
-	  INSERT INTO user VALUES (400001,"Budi","budi@gmail.com","budi123","budi123","11-06-2022","user"),(400002,"Andi","andi@gmail.com","andi123","andi123","11-06-2022","user"),(300001,"Kevin","kevin@gmail.com","kevin123","kevin123","admin"),(300002,"Amar","amar@gmail.com","amar123","amar123","admin");
-	`)
+	  INSERT INTO user VALUES (400001,"Budi","budi@gmail.com","budi123","budi123","11-06-2022","user"),(400002,"Andi","andi@gmail.com","andi123","andi123","11-06-2022","user"),(300001,"Kevin","kevin@gmail.com","kevin123","kevin123","11-06-2022","admin"),(300002,"Amar","amar@gmail.com","amar123","amar123","11-06-2022","admin");
+	  `)
 
 	if err != nil {
 		panic(err)
