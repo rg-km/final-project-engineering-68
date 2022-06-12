@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	db, err := sql.Open("sqlite3", "./backend/db/nakama.db")
+	db, err := sql.Open("sqlite3", "./nakama.db")
 	if err != nil {
 		panic(err)
 	}
@@ -54,15 +54,6 @@ func main() {
 		isi_ilustrasi BLOB
 	  );
 	  INSERT INTO ILUSTRASI VALUES (200001,101),(200002,100);
-	  CREATE TABLE admin (
-		id_admin  INTEGER PRIMARY KEY,
-		nama_admin TEXT,
-		email_admin TEXT,
-		username TEXT,
-		password TEXT
-	  );
-	  
-	  INSERT INTO admin VALUES (300001,"Kevin","kevin@gmail.com","kevin123","kevin123"),(300002,"Amar","amar@gmail.com","amar123","amar123");
 	  
 	  CREATE TABLE komentar (
 		id_komentar  INTEGER PRIMARY KEY,
@@ -86,9 +77,10 @@ func main() {
 		email_user TEXT,
 		username TEXT,
 		password TEXT,
-		tanggal_bergabung TEXT
+		tanggal_bergabung TEXT,
+		role TEXT
 	  );
-	  INSERT INTO user VALUES (400001,"Budi","budi@gmail.com","budi123","budi123","11-06-2022"),(400002,"Andi","andi@gmail.com","andi123","andi123","11-06-2022");
+	  INSERT INTO user VALUES (400001,"Budi","budi@gmail.com","budi123","budi123","11-06-2022","user"),(400002,"Andi","andi@gmail.com","andi123","andi123","11-06-2022","user"),(300001,"Kevin","kevin@gmail.com","kevin123","kevin123","admin"),(300002,"Amar","amar@gmail.com","amar123","amar123","admin");
 	`)
 
 	if err != nil {
