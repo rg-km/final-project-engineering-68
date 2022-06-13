@@ -9,8 +9,14 @@ import (
 )
 
 type User struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
+	ID                int64     `json:"id"`
+	Nama              string    `json:"nama"`
+	Email             string    `json:"email"`
+	Username          string    `json:"username"`
+	Password          string    `json:"password"`
+	Tanggal_bergabung time.Time `json:"tanggal_bergabung"`
+	Role              string    `json:"role"`
+	Token             string    `json:"token"`
 }
 type UserErrorResponse struct {
 	Error string `json:"error"`
@@ -116,7 +122,30 @@ func (api *API) logout(w http.ResponseWriter, req *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("logged out"))
 }
+func (api *API) register(w http.ResponseWriter, req *http.Request) {
+	api.AllowOrigin(w, req)
+	var user User
+	err := json.NewDecoder(req.Body).Decode(&user)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	res, _ := api.userRepo.CheckEmail(user.Email)
+	if len(res) != 0 {
+		w.Write([]byte("This email has been registered"))
+		return
+	}
+	currentDate := time.Now().Local().Format("2020-02-21")
+	err = api.userRepo.InsertUser(user.Nama, user.Email, user.Username, user.Password, currentDate, "user")
+	if err != nil {
+		w.WriteHeader(http.StatusUnauthorized)
+		w.Write([]byte("Error when registering data into database"))
+		return
+	}
+	w.WriteHeader(http.StatusCreated)
+	w.Write([]byte("registration successful"))
 
+}
 func (api *API) userlist(w http.ResponseWriter, req *http.Request) {
 	api.AllowOrigin(w, req)
 	encoder := json.NewEncoder(w)
@@ -138,6 +167,7 @@ func (api *API) userlist(w http.ResponseWriter, req *http.Request) {
 
 	for _, product := range users {
 		response.Users = append(response.Users, User{
+			ID:       product.ID,
 			Username: product.Username,
 			Password: product.Password,
 			// Category: product.Category,
