@@ -85,10 +85,26 @@ var _ = Describe("Repository", func() {
 
 	Describe("login test", func() {
 		When("username and password correct", func() {
-			It("login failed", func() {
+			It("login accept", func() {
 				login, err := userRepo.Login("kevin123", "kevin123")
 				Expect(err).ToNot(HaveOccurred())
 				Expect(*login).To(Equal("kevin123"))
+			})
+		})
+
+		When("password incorrect", func() {
+			It("login failed", func() {
+				_, err := userRepo.Login("kevin123", "kevin1234")
+				Expect(err).To(HaveOccurred())
+				Expect(err.Error()).To(Equal("Login Failed"))
+			})
+		})
+
+		When("username and password incorrect", func() {
+			It("login failed", func() {
+				_, err := userRepo.Login("kevin321", "4321")
+				Expect(err).To(HaveOccurred())
+				Expect(err.Error()).To(Equal("Login Failed"))
 			})
 		})
 	})
@@ -118,7 +134,7 @@ var _ = Describe("Repository", func() {
 			It("return new user", func() {
 
 				userRepo.InsertUser("Amanda", "amanda@gmail.com", "amanda123", "amanda123", "11-06-2022", "user")
-				
+
 				userLists, err := userRepo.FetchUsers()
 				Expect(err).ToNot(HaveOccurred())
 
