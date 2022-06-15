@@ -167,9 +167,9 @@ func (api *API) userlist(w http.ResponseWriter, req *http.Request) {
 
 	for _, product := range users {
 		response.Users = append(response.Users, User{
-			ID:       product.ID,
-			Username: product.Username,
-			Password: product.Password,
+			ID:   product.ID,
+			Nama: product.Nama,
+			//Password: product.Password,
 			// Category: product.Category,
 			// Quantity: product.Quantity,
 		})
