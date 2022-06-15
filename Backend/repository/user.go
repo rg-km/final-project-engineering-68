@@ -67,7 +67,7 @@ func (u *UserRepository) CheckEmail(email string) (string, error) {
 
 func (u *UserRepository) FetchUsers() ([]User, error) {
 	var users []User
-	sqlStatement := "SELECT  id, nama_user FROM user"
+	sqlStatement := "SELECT  id, nama_user, username, password FROM user"
 	rows, err := u.db.Query(sqlStatement)
 
 	if err != nil {
@@ -80,7 +80,8 @@ func (u *UserRepository) FetchUsers() ([]User, error) {
 		if err := rows.Scan(
 			&user.ID,
 			&user.Nama,
-			//&user.Password,
+			&user.Username,
+			&user.Password,
 			// &user.Role,
 			// &user.Loggedin,
 		); err != nil {
