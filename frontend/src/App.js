@@ -1,13 +1,20 @@
-import logo from "./logo.svg";
-import "./App.css";
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
+import './App.css';
+import Masuk from './components/input';
+import List from './component/kolom';
+import Kolom from './component/kolom';
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <Hero />
+    <div>
+      <div className='App'>
+      <header className="App-header">
+        Hello Visitors
+      </header>
+        <Masuk />
+      <footer>
+        create by Amario Fausta
+      </footer>
+    </div>
     </div>
   );
 }
