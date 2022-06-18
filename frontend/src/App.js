@@ -3,9 +3,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/login/login";
 import Register from "./components/register/register";
 
+
 import Home from "./pages/Home";
 import NavbarComp from "./components/navbar/NavbarComp";
 import { BrowserRouter, Link, Route, Routes, Switch } from "react-router-dom";
+import AboutUs from "./pages/AboutUs";
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
 
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route path="/about-us" element={<AboutUs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
