@@ -12,8 +12,9 @@ import (
 )
 
 type API struct {
-	userRepo repository.UserRepository
-	mux      *http.ServeMux
+	userRepo   repository.UserRepository
+	kontenRepo repository.KontenRepository
+	mux        *http.ServeMux
 }
 
 var (
@@ -27,10 +28,14 @@ var (
 	randomState = "random"
 )
 
-func NewAPI(userRepo repository.UserRepository) API {
+func NewAPI(userRepo repository.UserRepository, kontenRepo repository.KontenRepository) API {
 	mux := http.NewServeMux()
+	// api := API{
+	// 	userRepo, kontenRepo, mux,
+	// }
+	//kontentRepo :=
 	api := API{
-		userRepo, mux,
+		userRepo, kontenRepo, mux,
 	}
 	mux.Handle("/api/user/login", api.POST(http.HandlerFunc(api.login)))
 	mux.Handle("/api/user/logout", api.POST(http.HandlerFunc(api.logout)))
@@ -39,6 +44,7 @@ func NewAPI(userRepo repository.UserRepository) API {
 	mux.HandleFunc("/login", handleLogin)
 	mux.Handle("/api/register", api.POST(http.HandlerFunc(api.register)))
 	mux.Handle("/api/products", api.GET(http.HandlerFunc(api.userlist)))
+	mux.Handle("/api/konten", api.GET(api.AuthMiddleWare((http.HandlerFunc(api.kontenlist)))))
 	return api
 }
 

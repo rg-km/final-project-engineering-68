@@ -18,11 +18,20 @@ type User struct {
 	Role              string    `json:"role"`
 	Token             string    `json:"token"`
 }
+type Konten struct {
+	ID           int64  `json:"id"`
+	Tanggal_post string `json:"tanggal_post"`
+	Judul_konten string `json:"judul_konten"`
+	Isi_konten   string `json:"isi_konten"`
+}
 type UserErrorResponse struct {
 	Error string `json:"error"`
 }
 type UserListSuccessResponse struct {
 	Users []User `json:"users"`
+}
+type KontenListSuccessResponse struct {
+	Konten []Konten
 }
 type LoginSuccessResponse struct {
 	Username string `json:"username"`
@@ -113,11 +122,14 @@ func (api *API) logout(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	c := http.Cookie{
-		Name:   "token",
-		MaxAge: -1,
+	c := &http.Cookie{
+		Name:     "token",
+		Value:    "",
+		Path:     "/",
+		MaxAge:   -1,
+		HttpOnly: true,
 	}
-	http.SetCookie(w, &c)
+	http.SetCookie(w, c)
 
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("logged out"))
@@ -175,4 +187,36 @@ func (api *API) userlist(w http.ResponseWriter, req *http.Request) {
 		})
 	}
 	encoder.Encode(response)
+}
+
+func (api *API) kontenlist(w http.ResponseWriter, req *http.Request) {
+	api.AllowOrigin(w, req)
+	encoder := json.NewEncoder(w)
+	response := KontenListSuccessResponse{}
+	response.Konten = make([]Konten, 0)
+	kontents, err := api.kontenRepo.FetchKonten()
+	defer func() {
+		if err != nil {
+			w.WriteHeader(http.StatusBadRequest)
+			encoder.Encode(UserErrorResponse{Error: err.Error()})
+			return
+		}
+	}()
+	if err != nil {
+		return
+	}
+	for _, konten := range kontents {
+		response.Konten = append(response.Konten, Konten{
+			ID:           konten.ID,
+			Tanggal_post: konten.Tanggal_post,
+			Judul_konten: konten.Judul_konten,
+			Isi_konten:   konten.Isi_konten,
+		})
+	}
+	result, err := json.MarshalIndent(response.Konten, "", "\t")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	w.Write(result)
 }
