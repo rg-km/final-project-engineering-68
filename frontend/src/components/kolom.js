@@ -9,7 +9,8 @@ function Kolom({Nilai}) {
     <div>
     {
         Nilai.map(pr => 
-            <div>
+            <div> 
+              <div>
                 <div class="dialogbox">
                   <div class="body">
                     <span class="tip tip-left"></span>
@@ -17,8 +18,11 @@ function Kolom({Nilai}) {
                       <span>{pr.Komen}</span>
                     </div>
                   </div>
-                  <button class='tombol'> ❤️ </button>
                 </div>
+              </div>
+              <div>
+              <button class='tombol'> ❤️ </button>
+              </div>
             </div>
         )
     }
