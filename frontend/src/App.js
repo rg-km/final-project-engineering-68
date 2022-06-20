@@ -1,20 +1,22 @@
-import './App.css';
-import Masuk from './components/input';
-import List from './component/kolom';
-import Kolom from './component/kolom';
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Login from "./components/login/login";
+import Register from "./components/register/register";
+
+import Home from "./pages/Home";
+import NavbarComp from "./components/navbar/NavbarComp";
+import { BrowserRouter, Link, Route, Routes, Switch } from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      <div className='App'>
-      <header className="App-header">
-        Hello Visitors
-      </header>
-        <Masuk />
-      <footer>
-        create by Amario Fausta
-      </footer>
-    </div>
+    <div className="App">
+      <NavbarComp />
+
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </div>
   );
 }
