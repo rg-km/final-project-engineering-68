@@ -1,6 +1,7 @@
 .komentar{
     width: 700px;
     background-color: #8e918a;
+    border-radius: 4px;
 }
 
 
@@ -8,6 +9,7 @@
     width: 700px;
     height: 300px;
     background-color: #8e918a;
+    border-radius: 4px;
 }
 
 .Masuk{
