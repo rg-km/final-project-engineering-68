@@ -5,7 +5,6 @@ function App() {
   return (
     <div>
       <div className='App'>
-        <NavbarComp />
         <div className='kiri'/>
             <Masuk />
         </div>
