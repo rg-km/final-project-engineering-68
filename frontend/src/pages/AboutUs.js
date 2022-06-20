@@ -1,10 +1,13 @@
 import React from 'react';
 import "./AboutUs.css";
+import Footer from '../components/footer/Footer';
 import logo from "./images/1.jpg"
 import pink from "./images/2.jpg"
 
 function AboutUs() {
   return (
+    <div>
+        
 <div class="container">
     <div class="slew-title">
         <h1>Nakama</h1>
@@ -145,7 +148,10 @@ To test the hypothesis that smaller social distance leads to higher donation int
         </div>
 
     </div>
-  
+      
+      <Footer />
+           
+    </div>
   )
 }
 

@@ -2,6 +2,8 @@
 *,
 *::before,
 *::after{
+
+
     box-sizing: border-box;
 }
 
@@ -12,6 +14,14 @@ a{
     outline: none;
     text-decoration: none;
     transition: 0.5s;
+}
+
+.footer{
+    background-color:#ffffff;
+    padding:45px 0 20px;
+    font-size:15px;
+    line-height:24px;
+    color:#ffffff;
 }
 a:hover,
 a:focus{
@@ -47,7 +57,7 @@ h6{
     flex: 0 0 10%;
     max-width: 100%;
     margin-bottom: 60px;
-    margin-top: 40px;
+    margin-top: 50px;
     text-align: center;
 }
 .section-title h1{
