@@ -3,7 +3,6 @@ import {useText} from './teks'
 import {useState} from 'react'
 import './input.css'
 import Kolom from './kolom'
-import Tombol from './Tombol'
 
 function Masuk() {
 

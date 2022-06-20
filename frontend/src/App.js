@@ -1,20 +1,14 @@
 import './App.css';
 import Masuk from './components/input';
-import List from './component/kolom';
-import Kolom from './component/kolom';
-
+import List from './components/kolom';
+import Kolom from './components/kolom';
+import Login from './components/login/login'
 function App() {
   return (
     <div>
       <div className='App'>
-      <header className="App-header">
-        Hello Visitors
-      </header>
-        <Masuk />
-      <footer>
-        create by Amario Fausta
-      </footer>
-    </div>
+        <Login />
+     </div>
     </div>
   );
 }
