@@ -1,13 +1,12 @@
 import './App.css';
 import Masuk from './components/input';
+import NavbarComp from './components/navbar/NavbarComp';
 
 function App() {
   return (
     <div>
       <div className='App'>
-        <header className="App-header">
-          Hello Visitors
-        </header>
+        <NavbarComp />
         <div className='kiri'/>
             <Masuk />
         </div>
