@@ -1,7 +1,6 @@
 import './App.css';
 import Masuk from './components/input';
-import List from './component/kolom';
-import Kolom from './component/kolom';
+
 
 function App() {
   return (
