@@ -13,7 +13,7 @@ type User struct {
 	Token             string    `db:"token"`
 }
 type Konten struct {
-	ID             int64
+	ID             int64     `db:"id"`
 	id_kategori    int64     `db:"id_kategori"`
 	id_ilustrasi   int64     `db:"id_ilustrasi"`
 	Tanggal_post   string    `db:"tanggal_post"`

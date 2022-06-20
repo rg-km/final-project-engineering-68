@@ -19,10 +19,19 @@ type User struct {
 	Token             string    `json:"token"`
 }
 type Konten struct {
-	ID           int64  `json:"id"`
-	Tanggal_post string `json:"tanggal_post"`
-	Judul_konten string `json:"judul_konten"`
-	Isi_konten   string `json:"isi_konten"`
+	ID             int64  `json:"id"`
+	Id_kategori    int64  `json:"id_kategori"`
+	Id_ilustrasi   int64  `json:"id_ilustrasi"`
+	Tanggal_post   string `json:"tanggal_post"`
+	Judul_konten   string `json:"judul_konten"`
+	Isi_konten     string `json:"isi_konten"`
+	Id_admin       int64  `json:"id_admin"`
+	Jumlah_like    int64  `json:"jumlah_like"`
+	Jumlah_dislike int64  `json:"jumlah_dislike"`
+}
+type Kategori struct {
+	ID            int64  `json:"id"`
+	Nama_kategori string `json:"nama_kategori"`
 }
 type UserErrorResponse struct {
 	Error string `json:"error"`
@@ -32,6 +41,9 @@ type UserListSuccessResponse struct {
 }
 type KontenListSuccessResponse struct {
 	Konten []Konten
+}
+type KategoriResponse struct {
+	Kategori []Kategori
 }
 type LoginSuccessResponse struct {
 	Username string `json:"username"`
@@ -191,10 +203,11 @@ func (api *API) userlist(w http.ResponseWriter, req *http.Request) {
 
 func (api *API) kontenlist(w http.ResponseWriter, req *http.Request) {
 	api.AllowOrigin(w, req)
+	IdKonten := req.URL.Query().Get("id_konten")
 	encoder := json.NewEncoder(w)
 	response := KontenListSuccessResponse{}
 	response.Konten = make([]Konten, 0)
-	kontents, err := api.kontenRepo.FetchKonten()
+	kontents, err := api.kontenRepo.FetchKonten(IdKonten)
 	defer func() {
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
@@ -220,3 +233,12 @@ func (api *API) kontenlist(w http.ResponseWriter, req *http.Request) {
 	}
 	w.Write(result)
 }
+
+// func (api *API) kategori(w http.ResponseWriter, req *http.Request) {
+// 	api.AllowOrigin(w, req)
+// 	IdKategori := req.URL.Query().Get("id_kategori")
+// 	encoder := json.NewEncoder(w)
+// 	response := KategoriResponse{}
+// 	response.Kategori = make([]Kategori, 0)
+// 	kategori, err := api.KategoriRepo.F
+// }

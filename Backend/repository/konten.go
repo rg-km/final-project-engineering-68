@@ -2,6 +2,7 @@ package repository
 
 import (
 	"database/sql"
+	"fmt"
 	//"github.com/rg-km/final-project-engineering-68/api"
 )
 
@@ -64,10 +65,13 @@ func NewKontenRepository(db *sql.DB) *KontenRepository {
 // 	return user.Username, nil
 // }
 
-func (k *KontenRepository) FetchKonten() ([]Konten, error) {
+func (k *KontenRepository) FetchKonten(id_konten string) ([]Konten, error) {
 	var kontents []Konten
-	sqlStatement := "SELECT  id, tanggal_post, judul_konten, isi_konten FROM konten"
-	rows, err := k.db.Query(sqlStatement)
+	sqlStatement := "SELECT  id, id_kategori, id_ilustrasi, tanggal_post, judul_konten, isi_konten, jumlah_like, jumlah_dislike FROM konten"
+	if id_konten != "" {
+		sqlStatement = fmt.Sprintf("%s WHERE id = ?", sqlStatement)
+	}
+	rows, err := k.db.Query(sqlStatement, id_konten)
 
 	if err != nil {
 		return nil, err
@@ -78,9 +82,13 @@ func (k *KontenRepository) FetchKonten() ([]Konten, error) {
 		var konten Konten
 		if err := rows.Scan(
 			&konten.ID,
+			&konten.id_kategori,
+			&konten.id_ilustrasi,
 			&konten.Tanggal_post,
 			&konten.Judul_konten,
 			&konten.Isi_konten,
+			&konten.Jumlah_like,
+			&konten.Jumlah_dislike,
 			// &user.Role,
 			// &user.Loggedin,
 		); err != nil {
@@ -115,4 +123,15 @@ func (k *KontenRepository) FetchKonten() ([]Konten, error) {
 // 	// 	return err
 // 	// }
 // 	return nil
+// }
+// type Konten struct {
+// 	ID             int64  `json:"id"`
+// 	Id_kategori    int64  `json:"id_kategori"`
+// 	Id_ilustrasi   int64  `json:"id_ilustrasi"`
+// 	Tanggal_post   string `json:"tanggal_post"`
+// 	Judul_konten   string `json:"judul_konten"`
+// 	Isi_konten     string `json:"isi_konten"`
+// 	Id_admin       int64  `json:"id_admin"`
+// 	Jumlah_like    int64  `json:"jumlah_like"`
+// 	Jumlah_dislike int64  `json:"jumlah_dislike"`
 // }
