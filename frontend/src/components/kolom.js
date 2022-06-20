@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import './kolom.css'
 
 function Kolom({Nilai}) {
     const [suka,setSuka] = useState(0)
@@ -9,12 +10,13 @@ function Kolom({Nilai}) {
     {
         Nilai.map(pr => 
             <div>
-                <div>
-                <h3 >{pr.Nama}</h3>
-                <h4 >{pr.Komen}</h4>
-                <button onClick>Suka</button>
-                <button onClick>Gasuka</button>
-                <p> suka: {pr.Suka}, gasuka: {pr.Gasuka}</p>
+                <div class="dialogbox">
+                  <div class="body">
+                    <span class="tip tip-left"></span>
+                    <div class="message">
+                      <span>{pr.Komen}</span>
+                    </div>
+                  </div>
                 </div>
             </div>
         )
