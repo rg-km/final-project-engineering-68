@@ -63,8 +63,12 @@
     background-color: black;
     width: 50px;
     margin-left: 30px;
+    border-radius: 4px;
 }
 
 .tombol:hover{
     background-color: green;
+    width: 50px;
+    margin-left: 30px;
+    border-radius: 4px;
 }
