@@ -22,7 +22,8 @@ function Masuk() {
     }
 
   return (
-    <div className='Masuk'>
+    <div>
+      <div className='Masuk'>
         <h3>Nama : </h3>
         <input
           className='komentar'
@@ -43,10 +44,9 @@ function Masuk() {
               <button onClick={Harapan}>Post Komentar</button>
           </div>
         </div>
-
-        <hr />
-
-        <Kolom Nilai={awal} />
+    </div>
+    <hr />
+    <Kolom Nilai={awal} />
     </div>
   )
 }
