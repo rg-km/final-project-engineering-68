@@ -22,9 +22,7 @@ function Masuk() {
     }
 
   return (
-    <div>
-        <Kolom Nilai={awal} />
-
+    <div className='Masuk'>
         <h3>Nama : </h3>
         <input
           className='komentar'
@@ -39,10 +37,16 @@ function Masuk() {
           value={komen}
           onChange={(e) => setKomen(e.target.value)}
         />
-
-        <div>
-            <button onClick={Harapan}>Post Komentar</button>
+        
+        <div className='Masuk1'>
+          <div>
+              <button onClick={Harapan}>Post Komentar</button>
+          </div>
         </div>
+
+        <hr />
+
+        <Kolom Nilai={awal} />
     </div>
   )
 }

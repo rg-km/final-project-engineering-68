@@ -17,6 +17,7 @@ function Kolom({Nilai}) {
                       <span>{pr.Komen}</span>
                     </div>
                   </div>
+                  <button class='tombol'> ❤️ </button>
                 </div>
             </div>
         )

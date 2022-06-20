@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-logo {
@@ -21,6 +21,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  margin-left: 0px;
 }
 
 .App-link {
@@ -34,4 +35,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.kiri{
+  margin-left: 30px;
 }

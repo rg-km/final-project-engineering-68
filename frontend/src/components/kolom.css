@@ -58,3 +58,12 @@
     color: #797979;
     text-align: justify;
   }
+  
+.tombol{
+    background-color: black;
+    width: 50px;
+}
+
+.tombol:hover{
+    background-color: green;
+}
