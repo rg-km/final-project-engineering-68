@@ -1,0 +1,7 @@
+.card {
+  width: 18rem;
+}
+.card__image {
+  width: 10px;
+  height: 10px;
+}
