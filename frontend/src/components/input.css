@@ -1,0 +1,23 @@
+.komentar{
+    width: 700px;
+    background-color: #8e918a;
+    border-radius: 4px;
+}
+
+
+.komentar1{
+    width: 700px;
+    height: 300px;
+    background-color: #8e918a;
+    border-radius: 4px;
+}
+
+.Masuk{
+    margin-left: 30px;
+    margin-top: 30px;
+    text-align: justify;
+}
+
+.Masuk1{
+    margin-top: 30px;
+}

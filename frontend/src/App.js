@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <NavbarComp />
-    
+
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/category" element={<Category />} />
