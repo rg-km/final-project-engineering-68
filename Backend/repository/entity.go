@@ -14,13 +14,18 @@ type User struct {
 }
 type Konten struct {
 	ID             int64     `db:"id"`
-	id_kategori    int64     `db:"id_kategori"`
-	id_ilustrasi   int64     `db:"id_ilustrasi"`
+	Id_kategori    int64     `db:"id_kategori"`
+	Id_ilustrasi   int64     `db:"id_ilustrasi"`
 	Tanggal_post   string    `db:"tanggal_post"`
 	Judul_konten   string    `db:"judul_konten"`
 	Isi_konten     string    `db:"isi_konten"`
 	Tanggal_update time.Time `db:"tanggal_update"`
+	Id_admin       int64     `db:"id_admin"`
 	Status_konten  string    `db:"status_konten"`
 	Jumlah_like    int64     `db:"jumlah_like"`
 	Jumlah_dislike int64     `db:"jumlah_dislike"`
+}
+type Kategori struct {
+	ID            int64  `db:"id"`
+	Nama_kategori string `db:"nama_kategori"`
 }

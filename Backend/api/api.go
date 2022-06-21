@@ -12,9 +12,10 @@ import (
 )
 
 type API struct {
-	userRepo   repository.UserRepository
-	kontenRepo repository.KontenRepository
-	mux        *http.ServeMux
+	userRepo     repository.UserRepository
+	kontenRepo   repository.KontenRepository
+	kategoriRepo repository.KategoriRepository
+	mux          *http.ServeMux
 }
 
 var (
@@ -28,23 +29,25 @@ var (
 	randomState = "random"
 )
 
-func NewAPI(userRepo repository.UserRepository, kontenRepo repository.KontenRepository) API {
+func NewAPI(userRepo repository.UserRepository, kontenRepo repository.KontenRepository, kategoriRepo repository.KategoriRepository) API {
 	mux := http.NewServeMux()
 	// api := API{
 	// 	userRepo, kontenRepo, mux,
 	// }
 	//kontentRepo :=
 	api := API{
-		userRepo, kontenRepo, mux,
+		userRepo, kontenRepo, kategoriRepo, mux,
 	}
 	mux.Handle("/api/user/login", api.POST(http.HandlerFunc(api.login)))
 	mux.Handle("/api/user/logout", api.POST(http.HandlerFunc(api.logout)))
-	mux.HandleFunc("/callback", handleCallback)
-	mux.HandleFunc("/", handleHome)
-	mux.HandleFunc("/login", handleLogin)
+	// mux.HandleFunc("/callback", handleCallback)
+	// mux.HandleFunc("/", handleHome)
+	// mux.HandleFunc("/login", handleLogin)
 	mux.Handle("/api/register", api.POST(http.HandlerFunc(api.register)))
 	mux.Handle("/api/products", api.GET(http.HandlerFunc(api.userlist)))
 	mux.Handle("/api/konten", api.GET(api.AuthMiddleWare((http.HandlerFunc(api.kontenlist)))))
+	mux.Handle("/api/kategori", api.GET(api.AuthMiddleWare((http.HandlerFunc(api.kategori)))))
+
 	return api
 }
 

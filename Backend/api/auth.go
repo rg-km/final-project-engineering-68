@@ -220,10 +220,15 @@ func (api *API) kontenlist(w http.ResponseWriter, req *http.Request) {
 	}
 	for _, konten := range kontents {
 		response.Konten = append(response.Konten, Konten{
-			ID:           konten.ID,
-			Tanggal_post: konten.Tanggal_post,
-			Judul_konten: konten.Judul_konten,
-			Isi_konten:   konten.Isi_konten,
+			ID:             konten.ID,
+			Id_kategori:    konten.Id_kategori,
+			Id_ilustrasi:   konten.Id_ilustrasi,
+			Tanggal_post:   konten.Tanggal_post,
+			Judul_konten:   konten.Judul_konten,
+			Isi_konten:     konten.Isi_konten,
+			Id_admin:       konten.Id_admin,
+			Jumlah_like:    konten.Jumlah_like,
+			Jumlah_dislike: konten.Jumlah_dislike,
 		})
 	}
 	result, err := json.MarshalIndent(response.Konten, "", "\t")
@@ -234,11 +239,33 @@ func (api *API) kontenlist(w http.ResponseWriter, req *http.Request) {
 	w.Write(result)
 }
 
-// func (api *API) kategori(w http.ResponseWriter, req *http.Request) {
-// 	api.AllowOrigin(w, req)
-// 	IdKategori := req.URL.Query().Get("id_kategori")
-// 	encoder := json.NewEncoder(w)
-// 	response := KategoriResponse{}
-// 	response.Kategori = make([]Kategori, 0)
-// 	kategori, err := api.KategoriRepo.F
-// }
+func (api *API) kategori(w http.ResponseWriter, req *http.Request) {
+	api.AllowOrigin(w, req)
+	IdKategori := req.URL.Query().Get("id_kategori")
+	encoder := json.NewEncoder(w)
+	response := KategoriResponse{}
+	response.Kategori = make([]Kategori, 0)
+	kategori, err := api.kategoriRepo.FetchKategori(IdKategori)
+	defer func() {
+		if err != nil {
+			w.WriteHeader(http.StatusBadRequest)
+			encoder.Encode(UserErrorResponse{Error: err.Error()})
+			return
+		}
+	}()
+	if err != nil {
+		return
+	}
+	for _, v := range kategori {
+		response.Kategori = append(response.Kategori, Kategori{
+			ID:            v.ID,
+			Nama_kategori: v.Nama_kategori,
+		})
+	}
+	result, err := json.MarshalIndent(response.Kategori, "", "\t")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	w.Write(result)
+}

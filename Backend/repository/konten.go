@@ -82,8 +82,8 @@ func (k *KontenRepository) FetchKonten(id_konten string) ([]Konten, error) {
 		var konten Konten
 		if err := rows.Scan(
 			&konten.ID,
-			&konten.id_kategori,
-			&konten.id_ilustrasi,
+			&konten.Id_kategori,
+			&konten.Id_ilustrasi,
 			&konten.Tanggal_post,
 			&konten.Judul_konten,
 			&konten.Isi_konten,
