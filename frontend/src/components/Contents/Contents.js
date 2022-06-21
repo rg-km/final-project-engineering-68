@@ -3,12 +3,12 @@ import React from "react";
 export default function Contents() {
   return (
     <div>
-      <div class="container px-4 py-5" id="featured-3">
-        <h2 class="pb-2 border-bottom">Kategori</h2>
-        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-          <div class="feature col">
-            <div class="feature-icon bg-primary bg-gradient">
-              <svg class="bi" width="1em" height="1em">
+      <div className="container px-4 py-5" id="featured-3">
+        <h2 className="pb-2 border-bottom">Kategori</h2>
+        <div className="row g-4 py-5 row-cols-1 row-cols-lg-3">
+          <div className="feature col">
+            <div className="feature-icon bg-primary bg-gradient">
+              <svg className="bi" width="1em" height="1em">
                 <use />
               </svg>
             </div>
@@ -17,16 +17,16 @@ export default function Contents() {
               Baca tutorial dasar-dasar pemograman menggunakan c, c++, c#, Java,
               Javascript dan masih banyak lagi
             </p>
-            <a href="#" class="icon-link">
+            <a href="#" className="icon-link">
               Call to action
-              <svg class="bi" width="1em" height="1em">
+              <svg className="bi" width="1em" height="1em">
                 <use />
               </svg>
             </a>
           </div>
-          <div class="feature col">
-            <div class="feature-icon bg-primary bg-gradient">
-              <svg class="bi" width="1em" height="1em">
+          <div className="feature col">
+            <div className="feature-icon bg-primary bg-gradient">
+              <svg className="bi" width="1em" height="1em">
                 <use />
               </svg>
             </div>
@@ -36,16 +36,16 @@ export default function Contents() {
               We'll add onto it with another sentence and probably just keep
               going until we run out of words.
             </p>
-            <a href="#" class="icon-link">
+            <a href="#" className="icon-link">
               Call to action
-              <svg class="bi" width="1em" height="1em">
+              <svg className="bi" width="1em" height="1em">
                 <use />
               </svg>
             </a>
           </div>
-          <div class="feature col">
-            <div class="feature-icon bg-primary bg-gradient">
-              <svg class="bi" width="1em" height="1em">
+          <div className="feature col">
+            <div className="feature-icon bg-primary bg-gradient">
+              <svg className="bi" width="1em" height="1em">
                 <use />
               </svg>
             </div>
@@ -55,9 +55,9 @@ export default function Contents() {
               We'll add onto it with another sentence and probably just keep
               going until we run out of words.
             </p>
-            <a href="#" class="icon-link">
+            <a href="#" className="icon-link">
               Call to action
-              <svg class="bi" width="1em" height="1em">
+              <svg className="bi" width="1em" height="1em">
                 <use />
               </svg>
             </a>

@@ -1,19 +1,26 @@
 import React from "react";
 import "./Footer.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebook,
+  faTwitter,
+  faInstagram,
+  faLinkedinIn,
+} from "@fortawesome/free-brands-svg-icons";
 
 function Footer() {
   return (
-    <footer class="site-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12 col-md-6">
+    <footer className="site-footer">
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-12 col-md-6">
             <h6>NAKAMA</h6>
-            <p class="text-justify"></p>
+            <p className="text-justify"></p>
           </div>
 
-          <div class="col-xs-6 col-md-3">
+          <div className="col-xs-6 col-md-3">
             <h3>Categories</h3>
-            <ul class="footer-links">
+            <ul className="footer-links">
               <li>
                 <a href="/">C</a>
               </li>
@@ -26,9 +33,9 @@ function Footer() {
             </ul>
           </div>
 
-          <div class="col-xs-6 col-md-3">
+          <div className="col-xs-6 col-md-3">
             <h3>Quick Links</h3>
-            <ul class="footer-links">
+            <ul className="footer-links">
               <li>
                 <a href="/">Home</a>
               </li>
@@ -43,33 +50,33 @@ function Footer() {
         </div>
         <hr></hr>
       </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 col-sm-6 col-xs-12">
-            <p class="copyright-text">@NAKAMA INC 2022</p>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-8 col-sm-6 col-xs-12">
+            <p className="copyright-text">@NAKAMA INC 2022</p>
           </div>
 
-          <div class="col-md-4 col-sm-6 col-xs-12">
+          <div className="col-md-4 col-sm-6 col-xs-12">
             <a>Follow Us</a>
-            <ul class="social-icons">
+            <ul className="social-icons">
               <li>
-                <a class="facebook" href="#">
-                  <i class="fa fa-facebook"></i>
+                <a className="facebook" href="#">
+                  <FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon>
                 </a>
               </li>
               <li>
-                <a class="twitter" href="#">
-                  <i class="fa fa-twitter"></i>
+                <a className="twitter" href="#">
+                  <FontAwesomeIcon icon={faTwitter}></FontAwesomeIcon>
                 </a>
               </li>
               <li>
-                <a class="instagram" href="#">
-                  <i class="fa fa-instagram"></i>
+                <a className="instagram" href="#">
+                  <FontAwesomeIcon icon={faInstagram}></FontAwesomeIcon>
                 </a>
               </li>
               <li>
-                <a class="linkedin" href="#">
-                  <i class="fa fa-linkedin"></i>
+                <a className="linkedin" href="#">
+                  <FontAwesomeIcon icon={faLinkedinIn}></FontAwesomeIcon>
                 </a>
               </li>
             </ul>
