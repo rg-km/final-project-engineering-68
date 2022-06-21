@@ -21,13 +21,17 @@ type User struct {
 type Konten struct {
 	ID             int64  `json:"id"`
 	Id_kategori    int64  `json:"id_kategori"`
-	Id_ilustrasi   int64  `json:"id_ilustrasi"`
 	Tanggal_post   string `json:"tanggal_post"`
 	Judul_konten   string `json:"judul_konten"`
 	Isi_konten     string `json:"isi_konten"`
+	Tanggal_update string `json:"tanggal_update"`
+	Status_konten  string `json:"status_konten"`
 	Id_admin       int64  `json:"id_admin"`
 	Jumlah_like    int64  `json:"jumlah_like"`
 	Jumlah_dislike int64  `json:"jumlah_dislike"`
+	Id_ilustrasi   int64  `json:"id_ilustrasi"`
+	Nama_ilustrasi string `json:"nama_ilustrasi"`
+	Src            string `json:"src"`
 }
 type Kategori struct {
 	ID            int64  `json:"id"`
@@ -222,13 +226,17 @@ func (api *API) kontenlist(w http.ResponseWriter, req *http.Request) {
 		response.Konten = append(response.Konten, Konten{
 			ID:             konten.ID,
 			Id_kategori:    konten.Id_kategori,
-			Id_ilustrasi:   konten.Id_ilustrasi,
 			Tanggal_post:   konten.Tanggal_post,
 			Judul_konten:   konten.Judul_konten,
 			Isi_konten:     konten.Isi_konten,
+			Tanggal_update: konten.Tanggal_update,
+			Status_konten:  konten.Status_konten,
 			Id_admin:       konten.Id_admin,
 			Jumlah_like:    konten.Jumlah_like,
 			Jumlah_dislike: konten.Jumlah_dislike,
+			Id_ilustrasi:   konten.Id_ilustrasi,
+			Nama_ilustrasi: konten.Nama_ilustrasi,
+			Src:            konten.Src,
 		})
 	}
 	result, err := json.MarshalIndent(response.Konten, "", "\t")

@@ -49,6 +49,7 @@ func NewAPI(userRepo repository.UserRepository, kontenRepo repository.KontenRepo
 	mux.Handle("/api/kategori", api.GET(api.AuthMiddleWare((http.HandlerFunc(api.kategori)))))
 
 	return api
+
 }
 
 func (api *API) Handler() *http.ServeMux {

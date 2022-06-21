@@ -67,9 +67,9 @@ func NewKontenRepository(db *sql.DB) *KontenRepository {
 
 func (k *KontenRepository) FetchKonten(id_konten string) ([]Konten, error) {
 	var kontents []Konten
-	sqlStatement := "SELECT  id, id_kategori, id_ilustrasi, tanggal_post, judul_konten, isi_konten, jumlah_like, jumlah_dislike FROM konten"
+	sqlStatement := "select k.id, k.id_kategori, k.tanggal_post, k.judul_konten, k.isi_konten, k.tanggal_update, k.status_konten, k.id_admin, k.jumlah_like, k.jumlah_dislike, k.id_ilustrasi, i.nama_ilustrasi,i.src from konten k inner join ilustrasi i on k.id_ilustrasi = i.id"
 	if id_konten != "" {
-		sqlStatement = fmt.Sprintf("%s WHERE id = ?", sqlStatement)
+		sqlStatement = fmt.Sprintf("%s WHERE k.id = ?", sqlStatement)
 	}
 	rows, err := k.db.Query(sqlStatement, id_konten)
 
@@ -83,12 +83,17 @@ func (k *KontenRepository) FetchKonten(id_konten string) ([]Konten, error) {
 		if err := rows.Scan(
 			&konten.ID,
 			&konten.Id_kategori,
-			&konten.Id_ilustrasi,
 			&konten.Tanggal_post,
 			&konten.Judul_konten,
 			&konten.Isi_konten,
+			&konten.Tanggal_update,
+			&konten.Status_konten,
+			&konten.Id_admin,
 			&konten.Jumlah_like,
 			&konten.Jumlah_dislike,
+			&konten.Id_ilustrasi,
+			&konten.Nama_ilustrasi,
+			&konten.Src,
 			// &user.Role,
 			// &user.Loggedin,
 		); err != nil {
