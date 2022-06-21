@@ -9,14 +9,45 @@ import (
 )
 
 type User struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
+	ID                int64     `json:"id"`
+	Nama              string    `json:"nama"`
+	Email             string    `json:"email"`
+	Username          string    `json:"username"`
+	Password          string    `json:"password"`
+	Tanggal_bergabung time.Time `json:"tanggal_bergabung"`
+	Role              string    `json:"role"`
+	Token             string    `json:"token"`
+}
+type Konten struct {
+	ID             int64  `json:"id"`
+	Id_kategori    int64  `json:"id_kategori"`
+	Tanggal_post   string `json:"tanggal_post"`
+	Judul_konten   string `json:"judul_konten"`
+	Isi_konten     string `json:"isi_konten"`
+	Tanggal_update string `json:"tanggal_update"`
+	Status_konten  string `json:"status_konten"`
+	Id_admin       int64  `json:"id_admin"`
+	Jumlah_like    int64  `json:"jumlah_like"`
+	Jumlah_dislike int64  `json:"jumlah_dislike"`
+	Id_ilustrasi   int64  `json:"id_ilustrasi"`
+	Nama_ilustrasi string `json:"nama_ilustrasi"`
+	Src            string `json:"src"`
+}
+type Kategori struct {
+	ID            int64  `json:"id"`
+	Nama_kategori string `json:"nama_kategori"`
 }
 type UserErrorResponse struct {
 	Error string `json:"error"`
 }
 type UserListSuccessResponse struct {
 	Users []User `json:"users"`
+}
+type KontenListSuccessResponse struct {
+	Konten []Konten
+}
+type KategoriResponse struct {
+	Kategori []Kategori
 }
 type LoginSuccessResponse struct {
 	Username string `json:"username"`
@@ -107,16 +138,42 @@ func (api *API) logout(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	c := http.Cookie{
-		Name:   "token",
-		MaxAge: -1,
+	c := &http.Cookie{
+		Name:     "token",
+		Value:    "",
+		Path:     "/",
+		MaxAge:   -1,
+		HttpOnly: true,
 	}
-	http.SetCookie(w, &c)
+	http.SetCookie(w, c)
 
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("logged out"))
 }
+func (api *API) register(w http.ResponseWriter, req *http.Request) {
+	api.AllowOrigin(w, req)
+	var user User
+	err := json.NewDecoder(req.Body).Decode(&user)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	res, _ := api.userRepo.CheckEmail(user.Email)
+	if len(res) != 0 {
+		w.Write([]byte("This email has been registered"))
+		return
+	}
+	currentDate := time.Now().Local().Format("2020-02-21")
+	err = api.userRepo.InsertUser(user.Nama, user.Email, user.Username, user.Password, currentDate, "user")
+	if err != nil {
+		w.WriteHeader(http.StatusUnauthorized)
+		w.Write([]byte("Error when registering data into database"))
+		return
+	}
+	w.WriteHeader(http.StatusCreated)
+	w.Write([]byte("registration successful"))
 
+}
 func (api *API) userlist(w http.ResponseWriter, req *http.Request) {
 	api.AllowOrigin(w, req)
 	encoder := json.NewEncoder(w)
@@ -138,11 +195,85 @@ func (api *API) userlist(w http.ResponseWriter, req *http.Request) {
 
 	for _, product := range users {
 		response.Users = append(response.Users, User{
-			Username: product.Username,
-			Password: product.Password,
+			ID:   product.ID,
+			Nama: product.Nama,
+			//Password: product.Password,
 			// Category: product.Category,
 			// Quantity: product.Quantity,
 		})
 	}
 	encoder.Encode(response)
+}
+
+func (api *API) kontenlist(w http.ResponseWriter, req *http.Request) {
+	api.AllowOrigin(w, req)
+	IdKonten := req.URL.Query().Get("id_konten")
+	encoder := json.NewEncoder(w)
+	response := KontenListSuccessResponse{}
+	response.Konten = make([]Konten, 0)
+	kontents, err := api.kontenRepo.FetchKonten(IdKonten)
+	defer func() {
+		if err != nil {
+			w.WriteHeader(http.StatusBadRequest)
+			encoder.Encode(UserErrorResponse{Error: err.Error()})
+			return
+		}
+	}()
+	if err != nil {
+		return
+	}
+	for _, konten := range kontents {
+		response.Konten = append(response.Konten, Konten{
+			ID:             konten.ID,
+			Id_kategori:    konten.Id_kategori,
+			Tanggal_post:   konten.Tanggal_post,
+			Judul_konten:   konten.Judul_konten,
+			Isi_konten:     konten.Isi_konten,
+			Tanggal_update: konten.Tanggal_update,
+			Status_konten:  konten.Status_konten,
+			Id_admin:       konten.Id_admin,
+			Jumlah_like:    konten.Jumlah_like,
+			Jumlah_dislike: konten.Jumlah_dislike,
+			Id_ilustrasi:   konten.Id_ilustrasi,
+			Nama_ilustrasi: konten.Nama_ilustrasi,
+			Src:            konten.Src,
+		})
+	}
+	result, err := json.MarshalIndent(response.Konten, "", "\t")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	w.Write(result)
+}
+
+func (api *API) kategori(w http.ResponseWriter, req *http.Request) {
+	api.AllowOrigin(w, req)
+	IdKategori := req.URL.Query().Get("id_kategori")
+	encoder := json.NewEncoder(w)
+	response := KategoriResponse{}
+	response.Kategori = make([]Kategori, 0)
+	kategori, err := api.kategoriRepo.FetchKategori(IdKategori)
+	defer func() {
+		if err != nil {
+			w.WriteHeader(http.StatusBadRequest)
+			encoder.Encode(UserErrorResponse{Error: err.Error()})
+			return
+		}
+	}()
+	if err != nil {
+		return
+	}
+	for _, v := range kategori {
+		response.Kategori = append(response.Kategori, Kategori{
+			ID:            v.ID,
+			Nama_kategori: v.Nama_kategori,
+		})
+	}
+	result, err := json.MarshalIndent(response.Kategori, "", "\t")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	w.Write(result)
 }
