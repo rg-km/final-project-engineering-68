@@ -7,6 +7,8 @@ berikut ini beberapa api yg sudah bisa digunakan untuk frontend
  POST /api/register
 ```
 
+![alt test](https://github.com/rg-km/final-project-engineering-68/blob/main/Backend/image/registrasi.png)
+
 ### LOGIN
 
 ```
