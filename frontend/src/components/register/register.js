@@ -12,7 +12,17 @@ function Register() {
         <form>
           <h3 className="mb-4">Register NAKAMA</h3>
           <div className="mb-3">
+            <input type="nama" className="form-control" placeholder="Nama" />
+          </div>
+          <div className="mb-3">
             <input type="email" className="form-control" placeholder="Email" />
+          </div>
+          <div className="mb-3">
+            <input
+              type="username"
+              className="form-control"
+              placeholder="Username"
+            />
           </div>
           <div className="mb-3">
             <input

@@ -13,7 +13,11 @@ function Login() {
         <form>
           <h3 className="mb-4">Login NAKAMA</h3>
           <div className="mb-3">
-            <input type="email" className="form-control" placeholder="Email" />
+            <input
+              type="username"
+              className="form-control"
+              placeholder="Username"
+            />
           </div>
           <div className="mb-3">
             <input
