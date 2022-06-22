@@ -31,7 +31,7 @@ berikut ini beberapa api yg sudah bisa digunakan untuk frontend
  GET /api/products
 ```
 
-![alt test](https://github.com/rg-km/final-project-engineering-68/blob/main/Backend/image/user-litst.png)
+![alt test](https://github.com/rg-km/final-project-engineering-68/blob/main/Backend/image/user-lists.png)
 
 ### KONTEN
 
