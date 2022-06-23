@@ -208,10 +208,11 @@ func (api *API) userlist(w http.ResponseWriter, req *http.Request) {
 func (api *API) kontenlist(w http.ResponseWriter, req *http.Request) {
 	api.AllowOrigin(w, req)
 	IdKonten := req.URL.Query().Get("id_konten")
+	IdKategori := req.URL.Query().Get("id_kategori")
 	encoder := json.NewEncoder(w)
 	response := KontenListSuccessResponse{}
 	response.Konten = make([]Konten, 0)
-	kontents, err := api.kontenRepo.FetchKonten(IdKonten)
+	kontents, err := api.kontenRepo.FetchKonten(IdKonten, IdKategori)
 	defer func() {
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
