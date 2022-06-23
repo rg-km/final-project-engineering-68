@@ -15,6 +15,7 @@ type API struct {
 	userRepo     repository.UserRepository
 	kontenRepo   repository.KontenRepository
 	kategoriRepo repository.KategoriRepository
+	komentarRepo repository.KomentarRepository
 	mux          *http.ServeMux
 }
 
@@ -29,14 +30,14 @@ var (
 	randomState = "random"
 )
 
-func NewAPI(userRepo repository.UserRepository, kontenRepo repository.KontenRepository, kategoriRepo repository.KategoriRepository) API {
+func NewAPI(userRepo repository.UserRepository, kontenRepo repository.KontenRepository, kategoriRepo repository.KategoriRepository, komentarRepo repository.KomentarRepository) API {
 	mux := http.NewServeMux()
 	// api := API{
 	// 	userRepo, kontenRepo, mux,
 	// }
 	//kontentRepo :=
 	api := API{
-		userRepo, kontenRepo, kategoriRepo, mux,
+		userRepo, kontenRepo, kategoriRepo, komentarRepo, mux,
 	}
 	mux.Handle("/api/user/login", api.POST(http.HandlerFunc(api.login)))
 	mux.Handle("/api/user/logout", api.POST(http.HandlerFunc(api.logout)))
@@ -47,6 +48,8 @@ func NewAPI(userRepo repository.UserRepository, kontenRepo repository.KontenRepo
 	mux.Handle("/api/products", api.GET(http.HandlerFunc(api.userlist)))
 	mux.Handle("/api/konten", api.GET(api.AuthMiddleWare((http.HandlerFunc(api.kontenlist)))))
 	mux.Handle("/api/kategori", api.GET(api.AuthMiddleWare((http.HandlerFunc(api.kategori)))))
+	mux.Handle("/api/komentar/add", api.POST(api.AuthMiddleWare(http.HandlerFunc(api.addKomentar))))
+	mux.Handle("/api/komentar", api.GET(api.AuthMiddleWare(http.HandlerFunc(api.komentarList))))
 
 	return api
 
