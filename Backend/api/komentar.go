@@ -72,12 +72,17 @@ func (api *API) komentarList(w http.ResponseWriter, req *http.Request) {
 
 	for _, eachKomen := range komen {
 		resp.Komentar  = append(resp.Komentar, Komentar{
+			ID: eachKomen.ID,
 			Isi_Komentar: eachKomen.Isi_Komentar,
 			Jumlah_like: eachKomen.Jumlah_like,
 			Jumlah_dislike: eachKomen.Jumlah_dislike,
 		})
 	}
-
-	encoder.Encode(resp)
+	result, err := json.MarshalIndent(resp.Komentar, "", "\t")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	w.Write(result)
 	
 }

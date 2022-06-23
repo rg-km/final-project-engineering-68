@@ -38,7 +38,7 @@ func (km *KomentarRepository) Komentar() ([]Komentar, error) {
 	var sqlStatement string
 
 	sqlStatement = `
-	SELECT isi_komentar, jumlah_like, jumlah_dislike FROM komentar
+	SELECT id, isi_komentar, jumlah_like, jumlah_dislike FROM komentar
 	`
 	rows, err := km.db.Query(sqlStatement)
 	if err != nil {
@@ -50,6 +50,7 @@ func (km *KomentarRepository) Komentar() ([]Komentar, error) {
 	for rows.Next() {
 		var komen Komentar
 		if err := rows.Scan(
+			&komen.ID,
 			&komen.Isi_Komentar, 
 			&komen.Jumlah_like, 
 			&komen.Jumlah_dislike,
