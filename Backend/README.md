@@ -40,6 +40,16 @@ berikut ini beberapa api yg sudah bisa digunakan untuk frontend
 ```
 ![alt test](https://github.com/rg-km/final-project-engineering-68/blob/main/Backend/image/konten.png)
 
+```
+ GET /api/konten?id_kategori=<id_kategori>
+```
+![alt test](https://github.com/rg-km/final-project-engineering-68/blob/main/Backend/image/konten%20w%20id_kategori.png)
+
+```
+ GET /api/konten?id_konten=<id_konten>
+```
+![alt test](https://github.com/rg-km/final-project-engineering-68/blob/main/Backend/image/konten%20w%20id_konten.png)
+
 ### KATEGORI
 
 ```
@@ -47,3 +57,9 @@ berikut ini beberapa api yg sudah bisa digunakan untuk frontend
 ```
 
 ![alt test](https://github.com/rg-km/final-project-engineering-68/blob/main/Backend/image/kategori.png)
+
+```
+ GET /api/kategori?id_kategori=<id_kategori>
+```
+
+![alt test](https://github.com/rg-km/final-project-engineering-68/blob/main/Backend/image/kategori%20w%20id_kategori.png)
