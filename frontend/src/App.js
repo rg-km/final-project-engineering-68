@@ -8,6 +8,7 @@ import NavbarComp from "./components/navbar/NavbarComp";
 import { BrowserRouter, Link, Route, Routes, Switch } from "react-router-dom";
 import AboutUs from "./pages/AboutUs";
 import Category from "./pages/Category";
+import Detail from "./components/Blog/Blog";
 
 function App() {
   return (
@@ -16,10 +17,13 @@ function App() {
 
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/category" element={<Category />} />
-        <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route exact path="/post/:detail-post" element={<Detail />} />
+        <Route exact path="/category" element={<Category />} />
+        {/* <Route exact path="/category/:detail-category" element={</>} /> */}
+        <Route exact path="/about-us" element={<AboutUs />} />
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/register" element={<Register />} />
+        {/* <Route path="*" element={} /> */}
       </Routes>
     </div>
   );
