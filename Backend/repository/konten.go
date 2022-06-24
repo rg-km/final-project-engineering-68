@@ -65,18 +65,31 @@ func NewKontenRepository(db *sql.DB) *KontenRepository {
 // 	return user.Username, nil
 // }
 
-func (k *KontenRepository) FetchKonten(id_konten string) ([]Konten, error) {
+func (k *KontenRepository) FetchKonten(id_konten, id_kategori string) ([]Konten, error) {
 	var kontents []Konten
 	sqlStatement := "select k.id, k.id_kategori, k.tanggal_post, k.judul_konten, k.isi_konten, k.tanggal_update, k.status_konten, k.id_admin, k.jumlah_like, k.jumlah_dislike, k.id_ilustrasi, i.nama_ilustrasi,i.src from konten k inner join ilustrasi i on k.id_ilustrasi = i.id"
 	if id_konten != "" {
 		sqlStatement = fmt.Sprintf("%s WHERE k.id = ?", sqlStatement)
-	}
-	rows, err := k.db.Query(sqlStatement, id_konten)
+		kontents, err := k.ExecuteQuery(sqlStatement, id_konten)
+		if err != nil {
+			return nil, err
+		}
+		return kontents, nil
 
+	}
+	if id_kategori != "" {
+		sqlStatement = fmt.Sprintf("%s WHERE k.id_kategori = ?", sqlStatement)
+		kontents, err := k.ExecuteQuery(sqlStatement, id_kategori)
+		if err != nil {
+			return nil, err
+		}
+		return kontents, nil
+	}
+	// return nil, fmt.Errorf("")
+	rows, err := k.db.Query(sqlStatement)
 	if err != nil {
 		return nil, err
 	}
-
 	defer rows.Close()
 	for rows.Next() {
 		var konten Konten
@@ -98,6 +111,39 @@ func (k *KontenRepository) FetchKonten(id_konten string) ([]Konten, error) {
 			// &user.Loggedin,
 		); err != nil {
 			return kontents, err
+		}
+		kontents = append(kontents, konten)
+	}
+	return kontents, nil
+}
+func (k *KontenRepository) ExecuteQuery(sqlStatement, id string) ([]Konten, error) {
+	var kontents []Konten
+	rows, err := k.db.Query(sqlStatement, id)
+
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var konten Konten
+		if err := rows.Scan(
+			&konten.ID,
+			&konten.Id_kategori,
+			&konten.Tanggal_post,
+			&konten.Judul_konten,
+			&konten.Isi_konten,
+			&konten.Tanggal_update,
+			&konten.Status_konten,
+			&konten.Id_admin,
+			&konten.Jumlah_like,
+			&konten.Jumlah_dislike,
+			&konten.Id_ilustrasi,
+			&konten.Nama_ilustrasi,
+			&konten.Src,
+			// &user.Role,
+			// &user.Loggedin,
+		); err != nil {
+			return nil, err
 		}
 		kontents = append(kontents, konten)
 	}
