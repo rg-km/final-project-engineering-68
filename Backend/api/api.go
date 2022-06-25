@@ -48,6 +48,9 @@ func NewAPI(userRepo repository.UserRepository, kontenRepo repository.KontenRepo
 	mux.Handle("/api/products", api.GET(http.HandlerFunc(api.userlist)))
 	mux.Handle("/api/konten", api.GET(http.HandlerFunc(api.kontenlist)))
 	mux.Handle("/api/kategori", api.GET((http.HandlerFunc(api.kategori))))
+	// mux.Handle("api/static",api.GET(http.Handle("/static/",http.StripPrefix("/static/",http.FileServer(http.Dir("assets"))))))
+	mux.Handle("/api/static/", http.StripPrefix("/api/static/", http.FileServer(http.Dir("image"))))
+	//http.Handle()
 	mux.Handle("/api/komentar/add", api.POST(api.AuthMiddleWare(http.HandlerFunc(api.addKomentar))))
 	mux.Handle("/api/komentar", api.GET(api.AuthMiddleWare(http.HandlerFunc(api.komentarList))))
 

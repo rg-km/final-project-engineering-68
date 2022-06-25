@@ -25,11 +25,12 @@ type KomentarListSuccessResponse struct {
 }
 
 func (api *API) addKomentar(w http.ResponseWriter, req *http.Request) {
-	
+
 	api.AllowOrigin(w, req)
+	IdKonten := req.URL.Query().Get("id_konten")
 
 	var user User
-	var konten Konten
+	//var konten Konten
 	var komen Komentar
 
 	err := json.NewDecoder(req.Body).Decode(&komen)
@@ -39,10 +40,10 @@ func (api *API) addKomentar(w http.ResponseWriter, req *http.Request) {
 	}
 
 	currentDate := time.Now().Format("2006-01-02")
-	err = api.komentarRepo.AddKomentar(currentDate, komen.Isi_Komentar, user.ID, konten.ID, komen.Jumlah_like, komen.Jumlah_dislike)
+	err = api.komentarRepo.AddKomentar(currentDate, komen.Isi_Komentar, user.ID, IdKonten, komen.Jumlah_like, komen.Jumlah_dislike)
 	if err != nil {
 		w.WriteHeader(http.StatusUnauthorized)
-		w.Write([]byte("Error add komen"))
+		w.Write([]byte("Error when adding comments"))
 		return
 	}
 
@@ -71,13 +72,13 @@ func (api *API) komentarList(w http.ResponseWriter, req *http.Request) {
 	}
 
 	for _, eachKomen := range komen {
-		resp.Komentar  = append(resp.Komentar, Komentar{
-			Isi_Komentar: eachKomen.Isi_Komentar,
-			Jumlah_like: eachKomen.Jumlah_like,
+		resp.Komentar = append(resp.Komentar, Komentar{
+			Isi_Komentar:   eachKomen.Isi_Komentar,
+			Jumlah_like:    eachKomen.Jumlah_like,
 			Jumlah_dislike: eachKomen.Jumlah_dislike,
 		})
 	}
 
 	encoder.Encode(resp)
-	
+
 }

@@ -14,7 +14,7 @@ func NewKomentarRepository(db *sql.DB) *KomentarRepository {
 	return &KomentarRepository{db: db}
 }
 
-func (km *KomentarRepository) AddKomentar(tanggal, isi string, id_user, id_konten, like, dislike int64) error {
+func (km *KomentarRepository) AddKomentar(tanggal, isi string, id_user int64, id_konten string, like, dislike int64) error {
 
 	//var komentar Komentar
 	var sqlStatement string
@@ -23,7 +23,7 @@ func (km *KomentarRepository) AddKomentar(tanggal, isi string, id_user, id_konte
 	VALUES(?,?,?,?,?,?);
 	`
 
-	_,err := km.db.Exec(sqlStatement, tanggal, isi, id_user, id_konten, like, dislike)
+	_, err := km.db.Exec(sqlStatement, tanggal, isi, id_user, id_konten, like, dislike)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -33,7 +33,7 @@ func (km *KomentarRepository) AddKomentar(tanggal, isi string, id_user, id_konte
 }
 
 func (km *KomentarRepository) Komentar() ([]Komentar, error) {
-	
+
 	var komentar []Komentar
 	var sqlStatement string
 
@@ -50,8 +50,8 @@ func (km *KomentarRepository) Komentar() ([]Komentar, error) {
 	for rows.Next() {
 		var komen Komentar
 		if err := rows.Scan(
-			&komen.Isi_Komentar, 
-			&komen.Jumlah_like, 
+			&komen.Isi_Komentar,
+			&komen.Jumlah_like,
 			&komen.Jumlah_dislike,
 		); err != nil {
 			return komentar, err
@@ -59,7 +59,7 @@ func (km *KomentarRepository) Komentar() ([]Komentar, error) {
 
 		komentar = append(komentar, komen)
 	}
-	
+
 	return komentar, nil
 
 }
