@@ -48,6 +48,22 @@ func (u *UserRepository) FetchUserRole(username string) (*string, error) {
 	}
 	return &user.Role, nil
 }
+func (u *UserRepository) FetchIdByUsername(username interface{}) (int64, error) {
+	var user User
+	var sqlStatement string
+	//TODO : you must fetch the cart by product id
+	//HINT : you can use the where statement
+	sqlStatement = `SELECT id FROM user where username = ?`
+
+	err := u.db.QueryRow(sqlStatement, username).Scan(
+		&user.ID,
+	)
+
+	if err != nil {
+		return 0, err
+	}
+	return user.ID, nil
+}
 func (u *UserRepository) CheckEmail(email string) (string, error) {
 	var user User
 	var sqlStatement string

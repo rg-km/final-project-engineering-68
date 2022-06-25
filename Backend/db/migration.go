@@ -89,9 +89,9 @@ func main() {
 		nama_ilustrasi varchar(255),
 		src string
 	  );
-	  INSERT INTO ILUSTRASI VALUES (200001,"freeCodeCamp.org-Golang Tutorial For Beginners", "./frontend/src/images/1.png"),
-	  (200002,"Programming with Mosh-Learn Javascript in 1 hour","./frontend/src/images/2.png"),
-	  (200003,"Tim Buchalka Udemy- Java Programming Masterclass","./frontend/src/images/3.png");
+	  INSERT INTO ILUSTRASI VALUES (200001,"freeCodeCamp.org-Golang Tutorial For Beginners", "http://localhost:8082/api/static/200001.png"),
+	  (200002,"Programming with Mosh-Learn Javascript in 1 hour","http://localhost:8082/api/static/200002.png"),
+	  (200003,"Tim Buchalka Udemy- Java Programming Masterclass","http://localhost:8082/api/static/200003.png");
 	   CREATE TABLE IF NOT EXISTS komentar (
 		id  integer not null  primary key AUTOINCREMENT,
 		tanggal_komentar TEXT,
