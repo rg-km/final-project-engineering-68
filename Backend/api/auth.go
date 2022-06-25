@@ -160,6 +160,7 @@ func (api *API) register(w http.ResponseWriter, req *http.Request) {
 	}
 	res, _ := api.userRepo.CheckEmail(user.Email)
 	if len(res) != 0 {
+		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("This email has been registered"))
 		return
 	}

@@ -33,11 +33,11 @@ type Kategori struct {
 }
 
 type Komentar struct {
-	ID               int64     `db:"id"`
-	Id_konten        int64     `db:"id_konten"`
-	Id_user          int64     `db:"id_user"`
-	Isi_Komentar     string    `db:"isi_komentar"`
-	Tanggal_Komentar time.Time `db:"tanggal_komentar"`
-	Jumlah_like      int64     `db:"jumlah_like"`
-	Jumlah_dislike   int64     `db:"jumlah_dislike"`
+	ID               int64  `db:"id"`
+	Id_konten        int64  `db:"id_konten"`
+	Id_user          int64  `db:"id_user"`
+	Isi_Komentar     string `db:"isi_komentar"`
+	Tanggal_Komentar string `db:"tanggal_komentar"`
+	Jumlah_like      int64  `db:"jumlah_like"`
+	Jumlah_dislike   int64  `db:"jumlah_dislike"`
 }
