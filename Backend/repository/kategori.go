@@ -15,7 +15,7 @@ func NewKategoriRepository(db *sql.DB) *KategoriRepository {
 }
 func (kt *KategoriRepository) FetchKategori(id_kategori string) ([]Kategori, error) {
 	var kategories []Kategori
-	sqlStatement := "SELECT  id, nama_kategori FROM kategori"
+	sqlStatement := "SELECT  id, nama_kategori, keterangan_kategori FROM kategori"
 	if id_kategori != "" {
 		sqlStatement = fmt.Sprintf("%s WHERE id = ?", sqlStatement)
 	}
@@ -31,6 +31,7 @@ func (kt *KategoriRepository) FetchKategori(id_kategori string) ([]Kategori, err
 		if err := rows.Scan(
 			&kategori.ID,
 			&kategori.Nama_kategori,
+			&kategori.Keterangan_kategori,
 		); err != nil {
 			return kategories, err
 		}
