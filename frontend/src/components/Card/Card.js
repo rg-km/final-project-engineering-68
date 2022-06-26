@@ -1,8 +1,26 @@
+import axios from "axios";
 import React from "react";
-import CardUI from "./CardUI";
-import CardsUI from "./CardsUI";
+import CardUI from "./CardsUI";
+// import axios from "axios";
 
 export default function Card() {
+  const [card, setCard] = React.useState([]);
+  const getCard = async () => {
+    const res = await axios.get("http://localhost:8082/api/kategori");
+    setCard(res.data.data);
+  };
+
+  // const listCard = card.map((item, index) => {
+  //   return (
+  //     <Card
+  //       key={index}
+  //       image={item.image}
+  //       title={item.title}
+  //       description={item.description}
+  //     />
+  //   );
+  // });
+
   return (
     <div>
       <div class="album py-5 ">
@@ -28,6 +46,7 @@ export default function Card() {
             <div class="col-lg-4 mb-3 d-flex align-items-stretch">
               <CardsUI />
             </div>
+            <CardUI />
           </div>
         </div>
       </div>
