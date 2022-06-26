@@ -34,8 +34,9 @@ type Konten struct {
 	Src            string `json:"src"`
 }
 type Kategori struct {
-	ID            int64  `json:"id"`
-	Nama_kategori string `json:"nama_kategori"`
+	ID                  int64  `json:"id"`
+	Nama_kategori       string `json:"nama_kategori"`
+	Keterangan_kategori string `json:"keterangan_kategori"`
 }
 type UserErrorResponse struct {
 	Error string `json:"error"`
@@ -160,6 +161,7 @@ func (api *API) register(w http.ResponseWriter, req *http.Request) {
 	}
 	res, _ := api.userRepo.CheckEmail(user.Email)
 	if len(res) != 0 {
+		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("This email has been registered"))
 		return
 	}
@@ -267,8 +269,9 @@ func (api *API) kategori(w http.ResponseWriter, req *http.Request) {
 	}
 	for _, v := range kategori {
 		response.Kategori = append(response.Kategori, Kategori{
-			ID:            v.ID,
-			Nama_kategori: v.Nama_kategori,
+			ID:                  v.ID,
+			Nama_kategori:       v.Nama_kategori,
+			Keterangan_kategori: v.Keterangan_kategori,
 		})
 	}
 	result, err := json.MarshalIndent(response.Kategori, "", "\t")

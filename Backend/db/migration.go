@@ -79,9 +79,10 @@ func main() {
 
 	CREATE TABLE IF NOT EXISTS kategori (
 		id integer not null primary key AUTOINCREMENT,
-		nama_kategori varchar(255)
+		nama_kategori varchar(255),
+		keterangan_kategori varchar(255)
 	  );
-	  INSERT INTO kategori VALUES (500001,"Javascript"),(500002,"Go"),(500003,'CSS'),(500004,'Java');
+	  INSERT INTO kategori VALUES (500001,"Javascript","Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,"),(500002,"Go","Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt"),(500003,'CSS',"Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in"),(500004,'Java',"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the");
 	  
 	  
 	  CREATE TABLE IF NOT EXISTS ilustrasi (
@@ -89,9 +90,9 @@ func main() {
 		nama_ilustrasi varchar(255),
 		src string
 	  );
-	  INSERT INTO ILUSTRASI VALUES (200001,"freeCodeCamp.org-Golang Tutorial For Beginners", "./frontend/src/images/1.png"),
-	  (200002,"Programming with Mosh-Learn Javascript in 1 hour","./frontend/src/images/2.png"),
-	  (200003,"Tim Buchalka Udemy- Java Programming Masterclass","./frontend/src/images/3.png");
+	  INSERT INTO ILUSTRASI VALUES (200001,"freeCodeCamp.org-Golang Tutorial For Beginners", "http://localhost:8082/api/static/200001.png"),
+	  (200002,"Programming with Mosh-Learn Javascript in 1 hour","http://localhost:8082/api/static/200002.png"),
+	  (200003,"Tim Buchalka Udemy- Java Programming Masterclass","http://localhost:8082/api/static/200003.png");
 	   CREATE TABLE IF NOT EXISTS komentar (
 		id  integer not null  primary key AUTOINCREMENT,
 		tanggal_komentar TEXT,

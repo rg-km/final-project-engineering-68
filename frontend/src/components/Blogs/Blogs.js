@@ -350,6 +350,7 @@ export default function Blogs() {
           </div>
         </div>
       </div>
+      <Masuk />
     </div>
   );
 }
