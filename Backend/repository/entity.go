@@ -28,8 +28,9 @@ type Konten struct {
 	Src            string `db:"src"`
 }
 type Kategori struct {
-	ID            int64  `db:"id"`
-	Nama_kategori string `db:"nama_kategori"`
+	ID                  int64  `db:"id"`
+	Nama_kategori       string `db:"nama_kategori"`
+	Keterangan_kategori string `db:"keterangan_kategori"`
 }
 
 type Komentar struct {
