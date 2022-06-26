@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Blog.css";
+
 
 export default function Blog() {
   return (
