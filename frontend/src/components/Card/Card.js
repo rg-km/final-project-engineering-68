@@ -25,13 +25,13 @@ export default function Card() {
         <h4 class="mb-5 text-center">Apa yang baru dari di Nakama?</h4>
         <div class="container">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            {
+          {
               datak.map(pr =>
                 <div class="col-lg-4 mb-3 d-flex align-items-stretch">
-                  <CardsUI judul={pr.judul_konten}/>
+                  <CardsUI judul={pr.judul_konten} gambar={pr.src} />
                 </div>
               )
-            }
+          }
           </div>
         </div>
       </div>
