@@ -17,26 +17,26 @@ import { Link } from "react-router-dom";
 //     getCard();
 //   }, []);
 
-//   return (
-//     <div>
-//       <div className="container px-4 py-5" id="featured-3">
-//         <div className="row g-4 py-5 row-cols-1 row-cols-lg-3">
-//           {card.map((item, index) => (
-//             <div className="feature col" key={index}>
-//               <div className="card-box py-4 px-4" href="#">
-//                 <div className="feature-icon bg-primary bg-gradient">
-//                   <FontAwesomeIcon icon={faCode}></FontAwesomeIcon>
-//                 </div>
-//                 <h4>{item.nama_kategori}</h4>
-//                 <p>Testing</p>
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
+// //   return (
+// //     <div>
+// //       <div className="container px-4 py-5" id="featured-3">
+// //         <div className="row g-4 py-5 row-cols-1 row-cols-lg-3">
+// //           {card.map((item, index) => (
+// //             <div className="feature col" key={index}>
+// //               <div className="card-box py-4 px-4" href="#">
+// //                 <div className="feature-icon bg-primary bg-gradient">
+// //                   <FontAwesomeIcon icon={faHtml5}></FontAwesomeIcon>
+// //                 </div>
+// //                 <h4>{item.nama_kategori}</h4>
+// //                 <p>Testing</p>
+// //               </div>
+// //             </div>
+// //           ))}
+// //         </div>
+// //       </div>
+// //     </div>
+// //   );
+// // }
 
 let listCategory = [
   {
@@ -54,8 +54,14 @@ let listCategory = [
   {
     icon: faJs,
     title: "JavaScript",
-    description: `Baca tutorial dalam kategori lainnya seperti Mobile programming,
-    Game Programming, IoT, dan masih banyak lagi`,
+    description: `Baca tutorial dasar-dasar pemograman menggunakan c, c++, c#,
+    Java, Javascript dan masih banyak lagi`,
+  },
+  {
+    icon: faJs,
+    title: "JavaScript",
+    description: `Baca tutorial dasar-dasar pemograman menggunakan c, c++, c#,
+    Java, `,
   },
 ];
 
@@ -63,11 +69,11 @@ export default function Category() {
   return (
     <div>
       <div className="container px-4 py-5" id="featured-3">
-        <div className="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div className="row g-4 py-5 row-cols-1 row-cols-lg-4">
           {listCategory.map((item) => {
             return (
               <Link to="/category/detail-kategori">
-                <div className="feature col">
+                <div className="feature col d-flex h-100">
                   <div className="card-box py-4 px-4" href="#">
                     <div className="feature-icon bg-primary bg-gradient">
                       <FontAwesomeIcon icon={item.icon}></FontAwesomeIcon>
