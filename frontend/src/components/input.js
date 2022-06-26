@@ -21,6 +21,22 @@ function Masuk() {
         }])
     }
 
+    const [datak,setDatak] = useState(0)
+
+    const getData = async () => {
+        try{
+            const res = await Axios.get('http://localhost:8082/api/komentar')
+            setDatak(res.data)
+        } catch (error){
+            alert(error.message)
+        }
+    }
+
+    useEffect(() => {
+      getData()
+  })
+
+
   return (
     <div>
       <div className='Masuk'>
