@@ -80,3 +80,10 @@ berikut ini beberapa api yg sudah bisa digunakan untuk frontend
 
 ![alt test](https://github.com/rg-km/final-project-engineering-68/blob/main/Backend/image/Komentar.png)
 
+
+```
+ GET /api/komentar?id_konten=<id_konten>
+```
+
+![alt test](https://github.com/rg-km/final-project-engineering-68/blob/main/Backend/image/komenKonten.png)
+
