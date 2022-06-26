@@ -21,7 +21,6 @@ function Kolom({Nilai}) {
                 </div>
               </div>
               <div>
-              <button type="button" class="btn btn-primary tigapuluh"> ❤️ </button>
               </div>
             </div>
         )

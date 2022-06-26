@@ -349,8 +349,7 @@ export default function Blogs() {
             </div>
           </div>
         </div>
-      </div>
-      <Masuk />
+      </div> 
     </div>
   );
 }
