@@ -28,16 +28,6 @@ export default function Card() {
             <div class="col-lg-4 mb-3 d-flex align-items-stretch">
               <CardsUI />
             </div>
-
-            <div class="col">
-              <CardUI />
-            </div>
-            <div class="col">
-              <CardUI />
-            </div>
-            <div class="col">
-              <CardUI />
-            </div>
           </div>
         </div>
       </div>
