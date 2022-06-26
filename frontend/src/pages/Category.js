@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState, useEffect } from 'react'
+import Axios from 'axios'
 import "./Category.css";
 import axios from "axios";
 
@@ -38,42 +39,37 @@ import { Link } from "react-router-dom";
 //   );
 // }
 
-let listCategory = [
-  {
-    icon: faHtml5,
-    title: "HTML",
-    description: `Baca tutorial cara membuat web. Mulai dari HTML, CSS, JS, PHP,
-    MySQL, Codeigniter, React dan masih banyak lagi`,
-  },
-  {
-    icon: faCss3Alt,
-    title: "CSS",
-    description: `Baca tutorial dasar-dasar pemograman menggunakan c, c++, c#,
-    Java, Javascript dan masih banyak lagi`,
-  },
-  {
-    icon: faJs,
-    title: "JavaScript",
-    description: `Baca tutorial dalam kategori lainnya seperti Mobile programming,
-    Game Programming, IoT, dan masih banyak lagi`,
-  },
-];
 
 export default function Category() {
+  const [datak,setDatak] = useState(0)
+
+    const getData = async () => {
+        try{
+            const res = await Axios.get('http://localhost:8082/api/kategori')
+            setDatak(res.data)
+        } catch (error){
+            alert(error.message)
+        }
+    }
+
+    useEffect(() => {
+      getData()
+  })
   return (
     <div>
       <div className="container px-4 py-5" id="featured-3">
-        <div className="row g-4 py-5 row-cols-1 row-cols-lg-3">
-          {listCategory.map((item) => {
+        <div className="row g-4 py-5 row-cols-1 row-cols-lg-4">
+        {datak.map((item) => {
+            const url = `/category/${item.nama_kategori}`
             return (
-              <Link to="/category/detail-kategori">
-                <div className="feature col">
+              <Link to= {url} >
+                <div className="feature col d-flex h-100">
                   <div className="card-box py-4 px-4" href="#">
                     <div className="feature-icon bg-primary bg-gradient">
-                      <FontAwesomeIcon icon={item.icon}></FontAwesomeIcon>
+                      <FontAwesomeIcon></FontAwesomeIcon>
                     </div>
-                    <h4>{item.title}</h4>
-                    <p>{item.description}</p>
+                    <h4>{item.nama_kategori}</h4>
+                    <p>{item.keterangan_kategori}</p>
                   </div>
                 </div>
               </Link>
