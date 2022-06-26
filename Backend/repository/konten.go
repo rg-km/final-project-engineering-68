@@ -67,7 +67,7 @@ func NewKontenRepository(db *sql.DB) *KontenRepository {
 
 func (k *KontenRepository) FetchKonten(id_konten, id_kategori string) ([]Konten, error) {
 	var kontents []Konten
-	sqlStatement := "select k.id, k.id_kategori, k.tanggal_post, k.judul_konten, k.isi_konten, k.tanggal_update, k.status_konten, k.id_admin, k.jumlah_like, k.jumlah_dislike, k.id_ilustrasi, i.nama_ilustrasi,i.src from konten k inner join ilustrasi i on k.id_ilustrasi = i.id"
+	sqlStatement := "select k.id, k.id_kategori, k.tanggal_post, k.path, k.judul_konten,  k.isi_konten, k.tanggal_update, k.status_konten, k.id_admin, k.jumlah_like, k.jumlah_dislike, k.id_ilustrasi, i.nama_ilustrasi,i.src from konten k inner join ilustrasi i on k.id_ilustrasi = i.id"
 	if id_konten != "" {
 		sqlStatement = fmt.Sprintf("%s WHERE k.id = ?", sqlStatement)
 		kontents, err := k.ExecuteQuery(sqlStatement, id_konten)
@@ -97,6 +97,7 @@ func (k *KontenRepository) FetchKonten(id_konten, id_kategori string) ([]Konten,
 			&konten.ID,
 			&konten.Id_kategori,
 			&konten.Tanggal_post,
+			&konten.Path,
 			&konten.Judul_konten,
 			&konten.Isi_konten,
 			&konten.Tanggal_update,
