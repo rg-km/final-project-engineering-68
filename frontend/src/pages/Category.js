@@ -58,7 +58,7 @@ export default function Category() {
     <div>
       <div className="container px-4 py-5" id="featured-3">
         <div className="row g-4 py-5 row-cols-1 row-cols-lg-4">
-          {datak.map((item) => {
+        {datak.map((item) => {
             const url = `/category/${item.nama_kategori}`;
             return (
               <Link to={url}>

@@ -24,11 +24,7 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/post/:detail-post" element={<Detail />} />
         <Route exact path="category" element={<Category />} />
-        <Route exact path="category/CSS" element={<CardCSS />} />
-        <Route exact path="category/Go" element={<CardGo />} />
-        <Route exact path="category/Java" element={<CardJava />} />
-        <Route exact path="category/Javascript" element={<CardJavascript />} />
-        <Route exact path="Javascript" element={<Card />} />
+         
         {/* <Route exact path="/category/:detail-category" element={</>} /> */}
         <Route exact path="/about-us" element={<AboutUs />} />
         <Route exact path="/login" element={<Login />} />
