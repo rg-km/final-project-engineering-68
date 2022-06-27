@@ -38,8 +38,46 @@ import "./Category.css";
 // //   );
 // // }
 
-export default function Category() {
-  const [datak, setDatak] = useState([]);
+// export default function Category() {
+//   const [datak, setDatak] = useState(0);
+
+//   const getData = async () => {
+//     try {
+//       const res = await Axios.get("http://localhost:8082/api/kategori");
+//       setDatak(res.data);
+//     } catch (error) {
+//       alert(error.message);
+//     }
+//   };
+
+//   useEffect(() => {
+//     getData();
+//   });
+//   return (
+//     <div>
+//       <div className="container px-4 py-5" id="featured-3">
+//         <div className="row g-4 py-5 row-cols-1 row-cols-lg-4">
+//           {datak.map((item) => {
+//             const url = `/category/${item.nama_kategori}`;
+//             return (
+//               <Link to={url}>
+//                 <div className="feature col d-flex h-100">
+// <div className="card-box py-4 px-4" href="#">
+//   <div className="feature-icon bg-primary bg-gradient">
+//     <FontAwesomeIcon></FontAwesomeIcon>
+//   </div>
+//   <h4>{item.nama_kategori}</h4>
+//   <p>{item.keterangan_kategori}</p>
+// </div>
+//                 </div>
+//               </Link>
+//             );
+//           })}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 
 import React, { Fragment, useEffect, useState } from "react";
 import axios from "axios";
@@ -66,24 +104,27 @@ const Category = () => {
     }
   };
 
-  useEffect(() => {
-    getData();
-  }, []);
   return (
     <div>
       <div className="container px-4 py-5" id="featured-3">
         <div className="row g-4 py-5 row-cols-1 row-cols-lg-4">
-        {datak.map((item) => (
-              <Link to= {`${item.nama_kategori}`}>
-                <div className="feature col d-flex h-100">
-                  <div className="card-box py-4 px-4" href="#">
-                    <div className="feature-icon bg-primary bg-gradient">
-                      <FontAwesomeIcon></FontAwesomeIcon>
+          {loading &&
+            categorys.map((category) => {
+              const url = `/category/${category.nama_kategori}`;
+              return (
+                <Link to={url}>
+                  <div className="feature col d-flex h-100">
+                    <div className="card-box py-4 px-4" href="#">
+                      <div className="feature-icon bg-primary bg-gradient">
+                        <FontAwesomeIcon></FontAwesomeIcon>
+                      </div>
+                      <h4>{category.nama_kategori}</h4>
+                      <p>{category.keterangan_kategori}</p>
                     </div>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              );
+            })}
         </div>
       </div>
     </div>

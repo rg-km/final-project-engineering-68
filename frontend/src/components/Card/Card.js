@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Axios from "axios";
 import CardsUI from "./CardsUI";
 import axios from "axios";
 
@@ -41,4 +40,3 @@ export default function Card() {
   );
 };
 
-export default Card;
