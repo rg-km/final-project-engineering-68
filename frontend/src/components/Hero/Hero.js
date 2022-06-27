@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"
 
 export default function Hero() {
   return (
@@ -11,12 +12,13 @@ export default function Hero() {
             serta video pembelajaran yang terbaik.
           </p>
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-            <button
+            <Link
               type="button"
               className="btn btn-info btn-lg px-4 me-sm-3 text-white"
+              to='category'
             >
               Mulai Belajar{" "}
-            </button>
+            </Link>
           </div>
         </div>
       </div>

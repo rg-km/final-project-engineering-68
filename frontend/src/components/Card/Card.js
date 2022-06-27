@@ -20,7 +20,7 @@ export default function Card() {
 
   useEffect(() => {
     getData();
-  },[]);
+  });
 
   return (
     <div>

@@ -3,6 +3,7 @@ import "./login.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import nakama from "./nakama-bg.png";
 
+
 function Login() {
   const [username,setUsername] = useState("");
   const [password,setPassword] = useState("");
@@ -22,10 +23,6 @@ function Login() {
     result = await result.json();
     console.warn(result);
     alert(result)
-    
-    // if(result.status === 200){
-    //   localStorage.setItem('user-info',JSON.stringify(result));
-    //   navigate("/profile-pengajar");
     }
   return (
     <div className="row justify-content-center align-items-center">

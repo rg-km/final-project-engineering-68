@@ -3,6 +3,7 @@ import axios from "axios";
 import "./Category.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import './Category.css'
 
 const Category = () => {
   useEffect(() => {
@@ -34,7 +35,7 @@ const Category = () => {
                   <div className="feature col d-flex h-100">
                     <div className="card-box py-4 px-4" href="#">
                       <div className="feature-icon bg-primary bg-gradient">
-                        <FontAwesomeIcon></FontAwesomeIcon>
+                        <img src= {category.src} className='gambar'/>
                       </div>
                       <h4>{category.nama_kategori}</h4>
                       <p>{category.keterangan_kategori}</p>

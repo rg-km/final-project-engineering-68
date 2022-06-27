@@ -36,6 +36,7 @@ type Konten struct {
 }
 type Kategori struct {
 	ID                  int64  `json:"id"`
+	Src                 string `json:"src"`
 	Nama_kategori       string `json:"nama_kategori"`
 	Keterangan_kategori string `json:"keterangan_kategori"`
 }
@@ -272,6 +273,7 @@ func (api *API) kategori(w http.ResponseWriter, req *http.Request) {
 	for _, v := range kategori {
 		response.Kategori = append(response.Kategori, Kategori{
 			ID:                  v.ID,
+			Src:                 v.Src,
 			Nama_kategori:       v.Nama_kategori,
 			Keterangan_kategori: v.Keterangan_kategori,
 		})
