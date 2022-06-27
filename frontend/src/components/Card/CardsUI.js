@@ -1,7 +1,9 @@
 import React from "react";
 import img1 from "../../images/gson.png";
+import { BrowserRouter, Link, Route, Routes, Switch } from "react-router-dom";
 
-export default function CardsUI({judul, gambar}) {
+
+export default function CardsUI({judul, gambar,ulnya}) {
   return (
     <div className="card h-100">
       <a href="#">
@@ -16,9 +18,9 @@ export default function CardsUI({judul, gambar}) {
             landmark commercial locals and vivid neon signs.and now displays
             many landmark commercial locals and vivid neon signs
           </p>
-          <a href="#" className="btn btn-primary mt-auto align-self-start">
+          <Link to={ulnya} className="btn btn-primary mt-auto align-self-start">
             Liat selengkapnya
-          </a>
+          </Link>
         </div>
       </a>
     </div>

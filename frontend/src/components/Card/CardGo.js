@@ -32,7 +32,7 @@ export default function CardGo() {
             {loading &&
               cards.map((card) => (
                 <div class="col-lg-4 mb-3 d-flex align-items-stretch">
-                  <CardsUI judul={card.judul_konten} gambar={card.src} />
+                  <CardsUI judul={card.judul_konten} gambar={card.src} ulnya={`${card.path}`}/>
                 </div>
               ))}
           </div>
