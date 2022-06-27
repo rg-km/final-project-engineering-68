@@ -2,20 +2,20 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import "./Category.css";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHtml5, faCss3Alt, faJs } from "@fortawesome/free-brands-svg-icons";
-import { Link } from "react-router-dom";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faHtml5, faCss3Alt, faJs } from "@fortawesome/free-brands-svg-icons";
+// import { Link } from "react-router-dom";
 
-// export default function Category() {
-//   const [card, setCard] = React.useState([]);
-//   const getCard = async () => {
-//     const res = await axios.get("http://localhost:8082/api/kategori");
-//     console.log(res);
-//     setCard(res.data.data);
-//   };
-//   React.useEffect(() => {
-//     getCard();
-//   }, []);
+// // export default function Category() {
+// //   const [card, setCard] = React.useState([]);
+// //   const getCard = async () => {
+// //     const res = await axios.get("http://localhost:8082/api/kategori");
+// //     console.log(res);
+// //     setCard(res.data.data);
+// //   };
+// //   React.useEffect(() => {
+// //     getCard();
+// //   }, []);
 
 // //   return (
 // //     <div>
@@ -41,12 +41,28 @@ import { Link } from "react-router-dom";
 export default function Category() {
   const [datak, setDatak] = useState([]);
 
-  const getData = async () => {
+import React, { Fragment, useEffect, useState } from "react";
+import axios from "axios";
+import "./Category.css";
+import { Col, Row } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
+
+const Category = () => {
+  useEffect(() => {
+    getCategory();
+  }, []);
+
+  const [categorys, setCategory] = useState([]);
+  const [loading, setLoading] = useState([false]);
+
+  const getCategory = async () => {
     try {
-      const res = await Axios.get("http://localhost:8082/api/kategori");
-      setDatak(res.data);
-    } catch (error) {
-      alert(error.message);
+      const res = await axios.get("http://localhost:8082/api/kategori");
+      setCategory(res.data);
+      setLoading(true);
+    } catch (err) {
+      alert(err.message);
     }
   };
 
@@ -64,8 +80,6 @@ export default function Category() {
                     <div className="feature-icon bg-primary bg-gradient">
                       <FontAwesomeIcon></FontAwesomeIcon>
                     </div>
-                    <h4>{item.nama_kategori}</h4>
-                    <p>{item.keterangan_kategori}</p>
                   </div>
                 </div>
               </Link>
@@ -75,4 +89,6 @@ export default function Category() {
     </div>
 
   );
-}
+};
+
+export default Category;
