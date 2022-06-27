@@ -15,10 +15,10 @@ import Cardcat from "./components/Card/Cardcat";
 import Blogs from "./components/Blogs/Blogs";
 
 function App() {
-  const [datak, setDatak] = useState(0);
-  const [datak1, setDatak1] = useState(0);
-  const [datak2, setDatak2] = useState(0);
-  const [datak3, setDatak3] = useState(0);
+  const [datak, setDatak] = useState([]);
+  const [datak1, setDatak1] = useState([]);
+  const [datak2, setDatak2] = useState([]);
+  const [datak3, setDatak3] = useState([]);
 
   const getData = async () => {
     try {
