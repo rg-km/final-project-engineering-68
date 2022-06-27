@@ -9,7 +9,7 @@ export default function NavbarComp() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   const checkUser = async () => {
-    const response = await axios.get("http://localhost:8080/api/user");
+    const response = await axios.get("http://localhost:8082/api/user");
     if (response.data.user) {
       setUser(response.data.user);
       setIsLoggedIn(true);

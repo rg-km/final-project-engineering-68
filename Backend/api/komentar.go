@@ -53,7 +53,7 @@ func (api *API) addKomentar(w http.ResponseWriter, req *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusCreated)
-
+	w.Write([]byte("Your Comment has been submitted"))
 }
 
 func (api *API) komentarList(w http.ResponseWriter, req *http.Request) {
