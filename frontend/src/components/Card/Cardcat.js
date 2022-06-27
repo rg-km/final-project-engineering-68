@@ -3,23 +3,25 @@ import Axios from "axios";
 import CardsUI from "./CardsUI";
 
 export default function Cardcat({kategori}) {
-  const [datak, setDatak] = useState(0);
-  const url = `${kategori}`
+  //console.log(kategori)
+  const [datak, setDatak] = useState([]);
+  const url = `http://localhost:8082/api/konten?id_kategori=${kategori}`
 
   const getData = async () => {
     try {
       const res = await Axios.get(
         {url}
       );
+      console.log(res)
       setDatak(res.data);
     } catch (error) {
-      alert(error.message);
+      //console.log(error.message)
     }
   };
 
   useEffect(() => {
     getData();
-  });
+  }, []);
 
   return (
     <div>

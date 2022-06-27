@@ -74,15 +74,15 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/post/:detail-post" element={<Detail />} />
-        <Route exact path="category" element={<Category />} />
-        <Route exact path="category/Javascript" element={<Cardcat kategori={'500001'}/>} />
-        <Route exact path="category/Go" element={<Cardcat kategori={'500002'}/>} />
+        <Route exact path="/category" element={<Category />} />
+        <Route exact path="/category/Javascript" element={<Cardcat kategori={'500001'}/>} />
+        {/* <Route exact path="category/Go" element={<Cardcat kategori={'500002'}/>} />
         <Route exact path="category/CSS" element={<Cardcat kategori={'500003'}/>} />
-        <Route exact path="category/Java" element={<Cardcat kategori={'500004'}/>} />
-        {
+        <Route exact path="category/Java" element={<Cardcat kategori={'500004'}/>} /> */}
+        {/* {
           datak.map((pr) => 
           (
-            <Route exact path={`category/Javascript/${pr.path}`} element={<Blogs tgl={pr.tanggal_post} judul={pr.judul_konten} isi={pr.isi_konten}/>} />
+            <Route exact path={`category/javascript/${pr.path}`} element={<Blogs tgl={pr.tanggal_post} judul={pr.judul_konten} isi={pr.isi_konten}/>} />
         ))
         }
         {
@@ -94,15 +94,15 @@ function App() {
         {
           datak2.map((pr) => 
           (
-            <Route exact path={`category/CSS/${pr.path}`} element={<Blogs tgl={pr.tanggal_post} judul={pr.judul_konten} isi={pr.isi_konten}/>} />
+            <Route exact path={`category/CSS/${pr.path}`} element={<Cardcat kategori={'500001'}/>} />
         ))
         }
         {
           datak3.map((pr) => 
           (
-            <Route exact path={`category/Java/${pr.path}`} element={<Blogs tgl={pr.tanggal_post} judul={pr.judul_konten} isi={pr.isi_konten}/>}/>
+            <Route exact path={`category/Java/${pr.path}`} element={<Cardcat kategori={'500001'}/>} />
         ))
-        }
+        } */}
         {/* <Route exact path="/category/:detail-category" element={</>} /> */}
         <Route exact path="/about-us" element={<AboutUs />} />
         <Route exact path="/login" element={<Login />} />

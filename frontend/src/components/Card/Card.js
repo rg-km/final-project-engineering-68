@@ -4,13 +4,14 @@ import CardsUI from "./CardsUI";
 // import axios from "axios";
 
 export default function Card() {
-  const [datak, setDatak] = useState(0);
-
+  const [datak, setDatak] = useState([]);
+  console.log(datak)
   const getData = async () => {
     try {
       const res = await Axios.get(
         "http://localhost:8082/api/konten"
       );
+      console.log(res.data,'ini res data')
       setDatak(res.data);
     } catch (error) {
       alert(error.message);
@@ -19,7 +20,7 @@ export default function Card() {
 
   useEffect(() => {
     getData();
-  });
+  },[]);
 
   return (
     <div>
