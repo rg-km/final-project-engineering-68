@@ -30,6 +30,7 @@ type Konten struct {
 }
 type Kategori struct {
 	ID                  int64  `db:"id"`
+	Src                 string `db:"src"`
 	Nama_kategori       string `db:"nama_kategori"`
 	Keterangan_kategori string `db:"keterangan_kategori"`
 }

@@ -80,14 +80,15 @@ func main() {
 
 	CREATE TABLE IF NOT EXISTS kategori (
 		id integer not null primary key AUTOINCREMENT,
+		src varchar(255),
 		nama_kategori varchar(255),
 		keterangan_kategori varchar(255)
 	  );
 	  INSERT INTO kategori VALUES 
-	  (500001,"Javascript","Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,"),
-	  (500002,"Go","Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt"),
-	  (500003,'CSS',"Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in"),
-	  (500004,'Java',"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the");
+	  (500001,"http://localhost:8082/api/static/500001.jpg","Javascript","Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,"),
+	  (500002,"http://localhost:8082/api/static/500002.png","Go","Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt"),
+	  (500003,"http://localhost:8082/api/static/500003.jpg",'CSS',"Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in"),
+	  (500004,"http://localhost:8082/api/static/500004.png",'Java',"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the");
 	  
 	  
 	  CREATE TABLE IF NOT EXISTS ilustrasi (
