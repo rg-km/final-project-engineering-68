@@ -24,13 +24,6 @@ function Masuk() {
   return (
     <div>
       <div className='Masuk'>
-        <h3>Nama : </h3>
-        <input
-          className='komentar'
-          type="text"
-          value={nameValue}
-          onChange={(e) => setNameValue(e.target.value)}
-        />
         <h3>Komentar : </h3>
         <input
           className='komentar1'
