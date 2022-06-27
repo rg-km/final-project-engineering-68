@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import CardsUI from "./CardsUI";
-// import axios from "axios";
 
 export default function Cardcat({kategori}) {
   const [datak, setDatak] = useState(0);
-  const url = `http://localhost:8082/api/konten?id_kategori=${kategori}`
+  const url = `${kategori}`
 
   const getData = async () => {
     try {

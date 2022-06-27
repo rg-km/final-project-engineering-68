@@ -1,7 +1,7 @@
 import React from "react";
 import Masuk from "../input";
 
-export default function Blogs() {
+export default function Blogs({tgl, judul, isi}) {
   return (
     <div>
       <div className="container px-4 py-5" id="featured-3">

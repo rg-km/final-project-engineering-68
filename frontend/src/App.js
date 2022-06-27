@@ -12,6 +12,7 @@ import Detail from "./components/Blog/Blog";
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import Cardcat from "./components/Card/Cardcat";
+import Blogs from "./components/Blogs/Blogs";
 
 function App() {
   const [datak, setDatak] = useState(0);
@@ -78,6 +79,30 @@ function App() {
         <Route exact path="category/Go" element={<Cardcat kategori={'500002'}/>} />
         <Route exact path="category/CSS" element={<Cardcat kategori={'500003'}/>} />
         <Route exact path="category/Java" element={<Cardcat kategori={'500004'}/>} />
+        {
+          datak.map((pr) => 
+          (
+            <Route exact path={`category/Javascript/${pr.path}`} element={<Blogs tgl={pr.tanggal_post} judul={pr.judul_konten} isi={pr.isi_konten}/>} />
+        ))
+        }
+        {
+          datak1.map((pr) => 
+          (
+            <Route exact path={`category/Go/${pr.path}`} element={<Blogs tgl={pr.tanggal_post} judul={pr.judul_konten} isi={pr.isi_konten}/>}/>
+        ))
+        }
+        {
+          datak2.map((pr) => 
+          (
+            <Route exact path={`category/CSS/${pr.path}`} element={<Blogs tgl={pr.tanggal_post} judul={pr.judul_konten} isi={pr.isi_konten}/>} />
+        ))
+        }
+        {
+          datak3.map((pr) => 
+          (
+            <Route exact path={`category/Java/${pr.path}`} element={<Blogs tgl={pr.tanggal_post} judul={pr.judul_konten} isi={pr.isi_konten}/>}/>
+        ))
+        }
         {/* <Route exact path="/category/:detail-category" element={</>} /> */}
         <Route exact path="/about-us" element={<AboutUs />} />
         <Route exact path="/login" element={<Login />} />
