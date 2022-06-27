@@ -16,6 +16,7 @@ type Konten struct {
 	ID             int64  `db:"id"`
 	Id_kategori    int64  `db:"id_kategori"`
 	Tanggal_post   string `db:"tanggal_post"`
+	Path           string `db:"path"`
 	Judul_konten   string `db:"judul_konten"`
 	Isi_konten     string `db:"isi_konten"`
 	Tanggal_update string `db:"tanggal_update"`

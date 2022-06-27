@@ -8,7 +8,7 @@ export default function Card() {
 
     const getData = async () => {
         try{
-            const res = await Axios.get('http://localhost:8082/api/konten?id_kategori=500001')
+            const res = await Axios.get('http://localhost:8082/api/konten')
             setDatak(res.data)
         } catch (error){
             alert(error.message)

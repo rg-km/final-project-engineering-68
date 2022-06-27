@@ -22,6 +22,7 @@ type Konten struct {
 	ID             int64  `json:"id"`
 	Id_kategori    int64  `json:"id_kategori"`
 	Tanggal_post   string `json:"tanggal_post"`
+	Path           string `json:"path"`
 	Judul_konten   string `json:"judul_konten"`
 	Isi_konten     string `json:"isi_konten"`
 	Tanggal_update string `json:"tanggal_update"`
@@ -149,7 +150,7 @@ func (api *API) logout(w http.ResponseWriter, req *http.Request) {
 	http.SetCookie(w, c)
 
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("logged out"))
+	w.Write([]byte("You have logged out"))
 }
 func (api *API) register(w http.ResponseWriter, req *http.Request) {
 	api.AllowOrigin(w, req)
@@ -173,7 +174,7 @@ func (api *API) register(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 	w.WriteHeader(http.StatusCreated)
-	w.Write([]byte("registration successful"))
+	w.Write([]byte("Registration is successful"))
 
 }
 func (api *API) userlist(w http.ResponseWriter, req *http.Request) {
@@ -230,6 +231,7 @@ func (api *API) kontenlist(w http.ResponseWriter, req *http.Request) {
 			ID:             konten.ID,
 			Id_kategori:    konten.Id_kategori,
 			Tanggal_post:   konten.Tanggal_post,
+			Path:           konten.Path,
 			Judul_konten:   konten.Judul_konten,
 			Isi_konten:     konten.Isi_konten,
 			Tanggal_update: konten.Tanggal_update,
