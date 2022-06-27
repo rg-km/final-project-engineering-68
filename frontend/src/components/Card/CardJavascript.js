@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Axios from "axios";
-import CardsUI from "./CardsUI";
 import axios from "axios";
+import CardsUI from "./CardsUI";
 
-const Card = () => {
+export default function CardJavascript() {
   useEffect(() => {
     getCards();
   }, []);
@@ -26,7 +25,7 @@ const Card = () => {
   return (
     <div>
       <div class="album py-5 ">
-        <h4 class="mb-5 text-center">Apa yang baru dari di Nakama?</h4>
+        <h4 class="mb-5 text-center">Javascript</h4>
         <div class="container">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {loading &&
@@ -40,6 +39,4 @@ const Card = () => {
       </div>
     </div>
   );
-};
-
-export default Card;
+}

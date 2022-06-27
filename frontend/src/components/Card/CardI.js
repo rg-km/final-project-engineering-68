@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import img1 from "../../images/gson.png";
 import "./card.css";
-export default function CardUI() {
+
+export default function CardI() {
   const kata = `Is a manmade waterway dug in the early 1600's and now
   displays many landmark commercial locals and vivid neon
-  signs.and now displays many landmark commercial locals and
-  vivid neon now displays many`;
+  signs.and now displays many `;
   return (
     <>
       <div class="col-lg-4 mb-3 d-flex align-items-stretch">
@@ -20,7 +20,7 @@ export default function CardUI() {
               <p className="card-text mb-4">{kata}</p>
               <Link
                 to="/post/:detail-post"
-                className="btn btn-lg btn-primary btn-block align-self-start"
+                className="btn  btn-lg btn-primary btn-block align-self-start"
               >
                 Lihat selengkapnya
               </Link>

@@ -1,55 +1,135 @@
-import React from "react";
-import "./Category.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCode,
-  faLaptopCode,
-  faWindowRestore,
-} from "@fortawesome/free-solid-svg-icons";
+// import React, { useState, useEffect } from "react";
+// import Axios from "axios";
+// import "./Category.css";
+// import axios from "axios";
 
-export default function Category() {
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faHtml5, faCss3Alt, faJs } from "@fortawesome/free-brands-svg-icons";
+// import { Link } from "react-router-dom";
+
+// // export default function Category() {
+// //   const [card, setCard] = React.useState([]);
+// //   const getCard = async () => {
+// //     const res = await axios.get("http://localhost:8082/api/kategori");
+// //     console.log(res);
+// //     setCard(res.data.data);
+// //   };
+// //   React.useEffect(() => {
+// //     getCard();
+// //   }, []);
+
+// //   return (
+// //     <div>
+// //       <div className="container px-4 py-5" id="featured-3">
+// //         <div className="row g-4 py-5 row-cols-1 row-cols-lg-3">
+// //           {card.map((item, index) => (
+// //             <div className="feature col" key={index}>
+// //               <div className="card-box py-4 px-4" href="#">
+// //                 <div className="feature-icon bg-primary bg-gradient">
+// //                   <FontAwesomeIcon icon={faHtml5}></FontAwesomeIcon>
+// //                 </div>
+// //                 <h4>{item.nama_kategori}</h4>
+// //                 <p>Testing</p>
+// //               </div>
+// //             </div>
+// //           ))}
+// //         </div>
+// //       </div>
+// //     </div>
+// //   );
+// // }
+
+// export default function Category() {
+//   const [datak, setDatak] = useState(0);
+
+//   const getData = async () => {
+//     try {
+//       const res = await Axios.get("http://localhost:8082/api/kategori");
+//       setDatak(res.data);
+//     } catch (error) {
+//       alert(error.message);
+//     }
+//   };
+
+//   useEffect(() => {
+//     getData();
+//   });
+//   return (
+//     <div>
+//       <div className="container px-4 py-5" id="featured-3">
+//         <div className="row g-4 py-5 row-cols-1 row-cols-lg-4">
+//           {datak.map((item) => {
+//             const url = `/category/${item.nama_kategori}`;
+//             return (
+//               <Link to={url}>
+//                 <div className="feature col d-flex h-100">
+// <div className="card-box py-4 px-4" href="#">
+//   <div className="feature-icon bg-primary bg-gradient">
+//     <FontAwesomeIcon></FontAwesomeIcon>
+//   </div>
+//   <h4>{item.nama_kategori}</h4>
+//   <p>{item.keterangan_kategori}</p>
+// </div>
+//                 </div>
+//               </Link>
+//             );
+//           })}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+import React, { Fragment, useEffect, useState } from "react";
+import axios from "axios";
+import "./Category.css";
+import { Col, Row } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
+
+const Category = () => {
+  useEffect(() => {
+    getCategory();
+  }, []);
+
+  const [categorys, setCategory] = useState([]);
+  const [loading, setLoading] = useState([false]);
+
+  const getCategory = async () => {
+    try {
+      const res = await axios.get("http://localhost:8082/api/kategori");
+      setCategory(res.data);
+      setLoading(true);
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
   return (
     <div>
       <div className="container px-4 py-5" id="featured-3">
-        <div className="row g-4 py-5 row-cols-1 row-cols-lg-3">
-          <div className="feature col">
-            <div className="card-box py-4 px-4" href="#">
-              <div className="feature-icon bg-primary bg-gradient">
-                <FontAwesomeIcon icon={faCode}></FontAwesomeIcon>
-              </div>
-              <h4>Basic Programming</h4>
-              <p>
-                Baca tutorial dasar-dasar pemograman menggunakan c, c++, c#,
-                Java, Javascript dan masih banyak lagi
-              </p>
-            </div>
-          </div>
-          <div className="feature col">
-            <div className="card-box py-4 px-4">
-              <div className="feature-icon bg-primary bg-gradient">
-                <FontAwesomeIcon icon={faLaptopCode}></FontAwesomeIcon>
-              </div>
-              <h4>Web Programming</h4>
-              <p>
-                Baca tutorial cara membuat web. Mulai dari HTML, CSS, JS, PHP,
-                MySQL, Codeigniter, React dan masih banyak lagi
-              </p>
-            </div>
-          </div>
-          <div className="feature col">
-            <div className="card-box py-4 px-4">
-              <div className="feature-icon bg-primary bg-gradient">
-                <FontAwesomeIcon icon={faWindowRestore}></FontAwesomeIcon>
-              </div>
-              <h4>Lainnya</h4>
-              <p>
-                Baca tutorial dalam kategori lainnya seperti Mobile programming,
-                Game Programming, IoT, dan masih banyak lagi.
-              </p>
-            </div>
-          </div>
+        <div className="row g-4 py-5 row-cols-1 row-cols-lg-4">
+          {loading &&
+            categorys.map((category) => {
+              const url = `/category/${category.nama_kategori}`;
+              return (
+                <Link to={url}>
+                  <div className="feature col d-flex h-100">
+                    <div className="card-box py-4 px-4" href="#">
+                      <div className="feature-icon bg-primary bg-gradient">
+                        <FontAwesomeIcon></FontAwesomeIcon>
+                      </div>
+                      <h4>{category.nama_kategori}</h4>
+                      <p>{category.keterangan_kategori}</p>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Category;

@@ -3,7 +3,7 @@ import Axios from "axios";
 import CardsUI from "./CardsUI";
 import axios from "axios";
 
-const Card = () => {
+export default function CardGo() {
   useEffect(() => {
     getCards();
   }, []);
@@ -14,7 +14,7 @@ const Card = () => {
   const getCards = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8082/api/konten?id_kategori=500001"
+        "http://localhost:8082/api/konten?id_kategori=500002"
       );
       setCards(res.data);
       setLoading(true);
@@ -26,7 +26,7 @@ const Card = () => {
   return (
     <div>
       <div class="album py-5 ">
-        <h4 class="mb-5 text-center">Apa yang baru dari di Nakama?</h4>
+        <h4 class="mb-5 text-center">Golang</h4>
         <div class="container">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {loading &&
@@ -40,6 +40,4 @@ const Card = () => {
       </div>
     </div>
   );
-};
-
-export default Card;
+}

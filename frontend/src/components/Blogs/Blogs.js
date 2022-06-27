@@ -1,5 +1,5 @@
 import React from "react";
-import "./Blogs.css";
+import Masuk from "../input";
 
 export default function Blogs() {
   return (
@@ -273,7 +273,11 @@ export default function Blogs() {
                 Newer
               </a>
             </nav>
+          <hr />
+          <Masuk />
+
           </div>
+
 
           <div className="col-md-4">
             <div className="position-sticky">
