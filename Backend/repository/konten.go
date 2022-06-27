@@ -131,6 +131,7 @@ func (k *KontenRepository) ExecuteQuery(sqlStatement, id string) ([]Konten, erro
 			&konten.ID,
 			&konten.Id_kategori,
 			&konten.Tanggal_post,
+			&konten.Path,
 			&konten.Judul_konten,
 			&konten.Isi_konten,
 			&konten.Tanggal_update,
