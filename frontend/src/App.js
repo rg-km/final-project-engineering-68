@@ -14,7 +14,7 @@ import CardCSS from "./components/Card/CardCSS";
 import CardGo from "./components/Card/CardGo";
 import CardJava from "./components/Card/CardJava";
 import CardJavascript from "./components/Card/CardJavascript";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useNavigate} from "react";
 import Blogs from "./components/Blogs/Blogs";
 
 function App() {

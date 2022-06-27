@@ -11,7 +11,7 @@ export default function Card() {
       const res = await Axios.get(
         "http://localhost:8082/api/konten"
       );
-      console.log(res.data,'ini res data')
+
       setDatak(res.data);
     } catch (error) {
       alert(error.message);
